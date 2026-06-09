@@ -1,0 +1,1288 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ÉLYSÉE COFFEE | The World's Rarest Coffees</title>
+  <meta name="description" content="Ultra-luxury coffee capsules. From award-winning micro-lots to your cup.">
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400;1,500&display=swap" rel="stylesheet">
+  
+  <style>
+    /* ========================================
+       DESIGN TOKENS
+       ======================================== */
+    :root {
+      --bg: #0A0A0A;
+      --bg-alt: #111111;
+      --surface: #1A1A1A;
+      --text: #F5F5F5;
+      --text-muted: #888888;
+      --accent: #D4AF37;
+      --accent-light: #FFD700;
+      --border: #2A2A2A;
+      --font-display: 'Playfair Display', serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    
+    body {
+      font-family: var(--font-body);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; transition: .3s; }
+
+    /* ========================================
+       SPA PAGE SYSTEM
+       ======================================== */
+    .page { 
+      display: none; 
+      animation: fadePage .6s ease; 
+    }
+    .page.active { 
+      display: block; 
+    }
+    @keyframes fadePage { 
+      from { opacity: 0; transform: translateY(10px); } 
+      to { opacity: 1; transform: translateY(0); } 
+    }
+
+    /* ========================================
+       TYPOGRAPHY
+       ======================================== */
+    h1, h2, h3 {
+      font-family: var(--font-display);
+      font-weight: 400;
+      line-height: 1.15;
+    }
+    h1 { font-size: clamp(36px, 6vw, 76px); letter-spacing: -0.02em; }
+    h2 { font-size: clamp(28px, 4vw, 52px); }
+
+    .label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      display: block;
+    }
+
+    .line-accent {
+      width: 40px;
+      height: 1px;
+      background: var(--accent);
+      margin: 0 auto 28px;
+    }
+    .line-accent-left { margin: 0 0 28px; }
+
+    /* ========================================
+       BUTTONS
+       ======================================== */
+    .btn {
+      display: inline-block;
+      padding: 16px 36px;
+      font-family: var(--font-body);
+      font-size: 11px;
+      font-weight: 500;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      border: 1px solid var(--text);
+      background: transparent;
+      color: var(--text);
+      cursor: pointer;
+      transition: .4s;
+    }
+    .btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    .btn-solid {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+    .btn-solid:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    .container {
+      width: 90%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity .8s, transform .8s;
+    }
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ========================================
+       POPUP EBOOK
+       ======================================== */
+    .popup-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(8px);
+      -webkit-backdrop-filter: blur(8px);
+      z-index: 3000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s;
+    }
+    .popup-overlay.active {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .popup-content {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      padding: 60px 50px;
+      max-width: 520px;
+      width: 90%;
+      text-align: center;
+      position: relative;
+      box-shadow: 0 25px 80px rgba(0,0,0,.4);
+    }
+    .popup-close {
+      position: absolute;
+      top: 20px;
+      right: 24px;
+      background: none;
+      border: none;
+      font-size: 28px;
+      color: var(--text-muted);
+      cursor: pointer;
+      transition: color .3s;
+    }
+    .popup-close:hover { color: var(--text); }
+    .popup-content h2 {
+      font-style: italic;
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .popup-content > p {
+      color: var(--text-muted);
+      font-size: 15px;
+      margin-bottom: 32px;
+      line-height: 1.7;
+    }
+    .popup-form input {
+      width: 100%;
+      padding: 16px 0;
+      margin-bottom: 20px;
+      background: transparent;
+      border: none;
+      border-bottom: 1px solid var(--border);
+      font-family: var(--font-body);
+      font-size: 14px;
+      color: var(--text);
+      outline: none;
+      transition: border-color .3s;
+    }
+    .popup-form input:focus { border-bottom-color: var(--accent); }
+    .popup-form input::placeholder { color: #555; }
+    .popup-form button {
+      width: 100%;
+      padding: 18px;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      cursor: pointer;
+      transition: .4s;
+      font-weight: 600;
+    }
+    .popup-form button:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+    .popup-note {
+      display: block;
+      margin-top: 16px;
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ========================================
+       HEADER
+       ======================================== */
+    .header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 2000;
+      padding: 24px 0;
+      transition: .4s;
+      border-bottom: 1px solid transparent;
+    }
+    .header.scrolled {
+      background: rgba(10,10,10,.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom-color: var(--border);
+      padding: 16px 0;
+    }
+    .header-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .logo {
+      font-family: var(--font-display);
+      font-size: 22px;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: var(--text);
+      z-index: 2100;
+    }
+    .nav-desktop { display: none; }
+    .nav-desktop a {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      margin: 0 20px;
+      color: var(--text-muted);
+      position: relative;
+      padding-bottom: 4px;
+    }
+    .nav-desktop a:hover,
+    .nav-desktop a.active { color: var(--accent); }
+    .nav-desktop a.active::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      height: 1px;
+      background: var(--accent);
+    }
+    .header-icons {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .icon-btn {
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text);
+      transition: .3s;
+    }
+    .icon-btn:hover { color: var(--accent); }
+    .menu-toggle {
+      display: block;
+      background: none;
+      border: none;
+      cursor: pointer;
+      z-index: 2100;
+    }
+    .menu-toggle span {
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: var(--text);
+      margin: 6px 0;
+      transition: .4s;
+    }
+    .mobile-nav {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      z-index: 2050;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .5s;
+    }
+    .mobile-nav.open {
+      opacity: 1;
+      pointer-events: all;
+    }
+    .mobile-nav a {
+      font-family: var(--font-display);
+      font-size: 32px;
+      margin: 16px 0;
+      color: var(--text);
+    }
+    .mobile-nav a.active { color: var(--accent); }
+
+    /* ========================================
+       HOME: HERO
+       ======================================== */
+    .hero {
+      position: relative;
+      height: 100vh;
+      min-height: 600px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .hero-video {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      min-width: 100%;
+      min-height: 100%;
+      width: auto;
+      height: auto;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      z-index: 0;
+      filter: brightness(.6);
+    }
+    .hero-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(0,0,0,.3), rgba(0,0,0,.6));
+      z-index: 1;
+    }
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+      max-width: 900px;
+      color: var(--text);
+    }
+    .hero-content h1 {
+      margin-bottom: 20px;
+      text-shadow: 0 4px 20px rgba(0,0,0,.3);
+    }
+    .hero-content p {
+      font-size: clamp(15px, 2vw, 19px);
+      font-weight: 300;
+      margin-bottom: 40px;
+      opacity: .95;
+      max-width: 600px;
+      margin-left: auto;
+      margin-right: auto;
+      line-height: 1.6;
+    }
+    .hero-buttons {
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+    }
+    .hero .btn {
+      border-color: var(--text);
+      color: var(--text);
+      min-width: 240px;
+    }
+    .hero .btn:hover {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: var(--bg);
+    }
+
+    /* ========================================
+       HOME: MANIFESTO
+       ======================================== */
+    .manifesto {
+      padding: 120px 0;
+      text-align: center;
+    }
+    .manifesto .container { max-width: 700px; }
+    .manifesto h2 {
+      margin-bottom: 28px;
+      font-style: italic;
+      color: var(--text);
+    }
+    .manifesto p {
+      color: var(--text-muted);
+      font-size: 17px;
+      line-height: 1.8;
+    }
+
+    /* ========================================
+       HOME: SOCIAL PROOF
+       ======================================== */
+    .social-proof {
+      padding: 80px 0;
+      text-align: center;
+      border-top: 1px solid var(--border);
+    }
+    .social-proof h3 {
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .2em;
+      color: var(--text-muted);
+      margin-bottom: 40px;
+    }
+    .press-logos {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      align-items: center;
+      gap: 40px;
+      opacity: .3;
+    }
+    .press-logos span {
+      font-family: var(--font-display);
+      font-size: 24px;
+      color: var(--text);
+      letter-spacing: .05em;
+    }
+
+    /* ========================================
+       SHARED: PAGE HEADER STANDARD
+       ======================================== */
+    .page-header-std {
+      padding: 140px 0 60px;
+      text-align: center;
+    }
+    .page-header-std h1 {
+      margin-bottom: 12px;
+      color: var(--text);
+    }
+    .page-header-std > .container > p {
+      color: var(--text-muted);
+      max-width: 500px;
+      margin: 0 auto;
+      font-size: 15px;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       SHOP
+       ======================================== */
+    .filters {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      justify-content: center;
+      margin-bottom: 60px;
+    }
+    .filter-btn {
+      padding: 10px 24px;
+      border: 1px solid var(--border);
+      background: transparent;
+      color: var(--text-muted);
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      cursor: pointer;
+      transition: .3s;
+    }
+    .filter-btn:hover,
+    .filter-btn.active {
+      border-color: var(--accent);
+      color: var(--accent);
+    }
+    .product-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding-bottom: 100px;
+    }
+    .product-card {
+      cursor: pointer;
+      text-align: center;
+    }
+    .product-image {
+      position: relative;
+      overflow: hidden;
+      background: var(--surface);
+      margin-bottom: 20px;
+      aspect-ratio: 1/1;
+    }
+    .product-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s cubic-bezier(.25,.46,.45,.94);
+    }
+    .product-card:hover .product-image img {
+      transform: scale(1.05);
+    }
+    .product-info h3 {
+      margin-bottom: 4px;
+      font-size: 20px;
+      color: var(--text);
+    }
+    .product-meta {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      color: var(--text-muted);
+      margin-bottom: 8px;
+    }
+    .product-price {
+      font-size: 15px;
+      color: var(--text);
+    }
+    .product-price span {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-left: 6px;
+    }
+
+    /* ========================================
+       STORY
+       ======================================== */
+    .story-hero {
+      position: relative;
+      height: 60vh;
+      min-height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      margin-bottom: 80px;
+    }
+    .story-hero img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      filter: brightness(.4);
+    }
+    .story-hero .overlay {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,.3);
+    }
+    .story-hero .content {
+      position: relative;
+      z-index: 2;
+      text-align: center;
+      padding: 0 20px;
+    }
+    .editorial {
+      padding: 40px 0 60px;
+    }
+    .editorial-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 60px;
+      align-items: center;
+      margin-bottom: 100px;
+    }
+    .editorial-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      min-height: 350px;
+    }
+    .editorial-content h2 {
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .editorial-quote {
+      font-family: var(--font-display);
+      font-style: italic;
+      font-size: 24px;
+      color: var(--text-muted);
+      margin-bottom: 24px;
+      line-height: 1.5;
+      border-left: 2px solid var(--accent);
+      padding-left: 24px;
+    }
+    .editorial-content p {
+      color: var(--text-muted);
+      margin-bottom: 20px;
+      line-height: 1.8;
+    }
+    .process {
+      text-align: center;
+      padding-bottom: 100px;
+    }
+    .process h2 {
+      margin-bottom: 60px;
+      color: var(--text);
+    }
+    .process-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+    }
+    .process-step {
+      padding: 48px 30px;
+      border: 1px solid var(--border);
+      background: var(--bg-alt);
+      text-align: center;
+    }
+    .process-step h3 {
+      margin-bottom: 12px;
+      font-size: 24px;
+      color: var(--accent);
+    }
+    .process-step p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+
+    /* ========================================
+       SUBSCRIPTION
+       ======================================== */
+    .plans {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 24px;
+      margin-bottom: 100px;
+    }
+    .plan {
+      border: 1px solid var(--border);
+      padding: 48px 30px;
+      text-align: center;
+      background: var(--bg-alt);
+      transition: .4s;
+      position: relative;
+    }
+    .plan:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .plan.featured {
+      border-color: var(--accent);
+      background: var(--surface);
+    }
+    .plan-tag {
+      position: absolute;
+      top: 0;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--accent);
+      color: var(--bg);
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .1em;
+      padding: 6px 14px;
+      font-weight: 600;
+    }
+    .plan h3 {
+      font-size: 26px;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+    .plan .price {
+      font-size: 36px;
+      font-family: var(--font-display);
+      margin-bottom: 24px;
+      color: var(--accent);
+    }
+    .plan .price span {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+    .plan ul {
+      list-style: none;
+      margin-bottom: 32px;
+    }
+    .plan ul li {
+      padding: 10px 0;
+      color: var(--text-muted);
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+    }
+    .plan ul li:last-child { border-bottom: none; }
+
+    .benefits {
+      padding: 80px 0;
+      border-top: 1px solid var(--border);
+    }
+    .benefits-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-top: 40px;
+    }
+    .benefit h4 {
+      font-family: var(--font-display);
+      font-size: 20px;
+      margin-bottom: 8px;
+      color: var(--accent);
+    }
+    .benefit p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+    }
+    .contact-form-section {
+      padding: 80px 20px 100px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .contact-form-section h2 {
+      text-align: center;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+    .contact-form input,
+    .contact-form textarea {
+      width: 100%;
+      padding: 16px;
+      margin-bottom: 16px;
+      background: var(--surface);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-family: var(--font-body);
+      font-size: 14px;
+      outline: none;
+      transition: .3s;
+    }
+    .contact-form input:focus,
+    .contact-form textarea:focus { border-color: var(--accent); }
+    .contact-form input::placeholder,
+    .contact-form textarea::placeholder { color: #555; }
+    .contact-form button {
+      width: 100%;
+      padding: 18px;
+      background: var(--accent);
+      border: 1px solid var(--accent);
+      color: var(--bg);
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      cursor: pointer;
+      transition: .4s;
+      font-weight: 600;
+    }
+    .contact-form button:hover {
+      background: transparent;
+      color: var(--accent);
+    }
+
+    /* ========================================
+       JOURNAL
+       ======================================== */
+    .journal-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 30px;
+      padding-bottom: 100px;
+    }
+    .journal-card {
+      cursor: pointer;
+      background: var(--bg-alt);
+      border: 1px solid var(--border);
+      overflow: hidden;
+      transition: .4s;
+    }
+    .journal-card:hover {
+      border-color: var(--accent);
+      transform: translateY(-4px);
+    }
+    .journal-image {
+      aspect-ratio: 16/10;
+      overflow: hidden;
+    }
+    .journal-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform .8s;
+    }
+    .journal-card:hover .journal-image img {
+      transform: scale(1.05);
+    }
+    .journal-body {
+      padding: 28px;
+    }
+    .journal-body .cat {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      color: var(--accent);
+      margin-bottom: 8px;
+      display: block;
+    }
+    .journal-body h3 {
+      font-size: 22px;
+      margin-bottom: 10px;
+      color: var(--text);
+    }
+    .journal-body p {
+      color: var(--text-muted);
+      font-size: 14px;
+      line-height: 1.7;
+      margin-bottom: 16px;
+    }
+    .read-more {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .12em;
+      color: var(--text-muted);
+      border-bottom: 1px solid var(--border);
+      padding-bottom: 2px;
+      transition: .3s;
+    }
+    .read-more:hover {
+      color: var(--accent);
+      border-bottom-color: var(--accent);
+    }
+
+    /* ========================================
+       FOOTER (shared)
+       ======================================== */
+    .footer {
+      background: #050505;
+      color: var(--text-muted);
+      padding: 80px 0 40px;
+      font-size: 13px;
+      border-top: 1px solid var(--border);
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 40px;
+      margin-bottom: 60px;
+    }
+    .footer-col h4 {
+      font-family: var(--font-body);
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: .15em;
+      margin-bottom: 20px;
+      color: var(--text);
+    }
+    .footer-col a {
+      display: block;
+      margin-bottom: 12px;
+      color: #666;
+      font-size: 13px;
+      transition: .3s;
+    }
+    .footer-col a:hover { color: var(--accent); }
+    .footer-bottom {
+      border-top: 1px solid var(--border);
+      padding-top: 30px;
+      display: flex;
+      flex-direction: column;
+      gap: 16px;
+      align-items: center;
+      text-align: center;
+      font-size: 12px;
+      color: #444;
+    }
+    .footer-bottom span {
+      font-family: var(--font-display);
+      font-size: 16px;
+      color: #555;
+    }
+
+    /* ========================================
+       RESPONSIVE
+       ======================================== */
+    @media (min-width: 768px) {
+      .nav-desktop { display: flex; }
+      .menu-toggle { display: none; }
+      .hero-buttons { flex-direction: row; justify-content: center; }
+      
+      .product-grid { grid-template-columns: repeat(2, 1fr); }
+      .editorial-grid { grid-template-columns: 1fr 1fr; gap: 80px; }
+      .process-grid { grid-template-columns: repeat(3, 1fr); }
+      .plans { grid-template-columns: repeat(3, 1fr); align-items: start; }
+      .plan.featured { transform: scale(1.02); }
+      .benefits-grid { grid-template-columns: repeat(2, 1fr); }
+      .journal-grid { grid-template-columns: repeat(2, 1fr); }
+      
+      .footer-grid { grid-template-columns: repeat(4, 1fr); }
+      .footer-bottom { flex-direction: row; justify-content: space-between; }
+    }
+
+    @media (min-width: 1024px) {
+      .product-grid { grid-template-columns: repeat(3, 1fr); }
+      .journal-grid { grid-template-columns: repeat(3, 1fr); }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ========================================
+       POPUP EBOOK
+       ======================================== -->
+  <div class="popup-overlay" id="popup">
+    <div class="popup-content fade-in">
+      <button class="popup-close" id="closePopup" aria-label="Close popup">&times;</button>
+      <span class="label" style="color: var(--accent);">Free Guide</span>
+      <h2>Master the Art of Rare Coffee</h2>
+      <p>Discover brewing rituals, tasting notes, and the secrets of Cup of Excellence micro-lots.</p>
+      <form class="popup-form" onsubmit="event.preventDefault(); alert('Check your inbox! Your e-book has been sent.'); document.getElementById('popup').classList.remove('active');">
+        <input type="text" placeholder="First Name" required aria-label="First Name">
+        <input type="email" placeholder="Email Address" required aria-label="Email Address">
+        <button type="submit">Download the E-Book</button>
+      </form>
+      <span class="popup-note">No spam. Unsubscribe anytime.</span>
+    </div>
+  </div>
+
+  <!-- ========================================
+       HEADER
+       ======================================== -->
+  <header class="header" id="header">
+    <div class="container header-inner">
+      <a href="#" class="logo" data-page="home">Élysée</a>
+      <nav class="nav-desktop">
+        <a href="#" class="nav-link" data-page="shop">Shop</a>
+        <a href="#" class="nav-link" data-page="story">Our Story</a>
+        <a href="#" class="nav-link" data-page="subscription">Subscription</a>
+        <a href="#" class="nav-link" data-page="journal">Journal</a>
+      </nav>
+      <div class="header-icons">
+        <button class="icon-btn" aria-label="Cart">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4zM3 6h18M16 10a4 4 0 01-8 0"/></svg>
+        </button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+          <span></span>
+          <span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <div class="mobile-nav" id="mobileNav">
+    <a href="#" class="mobile-link" data-page="shop">Shop</a>
+    <a href="#" class="mobile-link" data-page="story">Our Story</a>
+    <a href="#" class="mobile-link" data-page="subscription">Subscription</a>
+    <a href="#" class="mobile-link" data-page="journal">Journal</a>
+  </div>
+
+  <!-- ========================================
+       PAGE: HOME
+       ======================================== -->
+  <section class="page active" id="page-home">
+    <div class="hero">
+      <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1920&q=80">
+        <source src="https://videos.pexels.com/video-files/2909914/2909914-uhd_2560_1440_24fps.mp4" type="video/mp4">
+        <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=1920&q=80" alt="Coffee">
+      </video>
+      <div class="hero-overlay"></div>
+      <div class="hero-content">
+        <h1>The World's Rarest Coffees, Encapsulated</h1>
+        <p>From Cup of Excellence micro-lots to your morning ritual. Experience coffee as fine wine, sealed in precision aluminum.</p>
+        <div class="hero-buttons">
+          <a href="#" class="btn btn-solid" data-page="shop">Explore the Collection</a>
+          <a href="#" class="btn" data-page="subscription">Join the Club</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="manifesto">
+      <div class="container fade-in">
+        <div class="line-accent"></div>
+        <h2>Coffee is no longer a commodity. It is a craft.</h2>
+        <p>At Élysée, we source only the top 0.1% of arabica beans—hand-picked at peak ripeness, processed with obsessive precision, and roasted in micro-batches. True luxury is not excess. It is rarity.</p>
+      </div>
+    </div>
+
+    <div class="social-proof">
+      <div class="container fade-in">
+        <h3>As Featured In</h3>
+        <div class="press-logos">
+          <span>Forbes</span>
+          <span>Financial Times</span>
+          <span>Robb Report</span>
+          <span>Monocle</span>
+          <span>GQ</span>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col"><h4>Shop</h4><a href="#" data-page="shop">All Coffees</a><a href="#" data-page="subscription">Subscriptions</a><a href="#" data-page="shop">Gift Sets</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="#" data-page="story">Our Story</a><a href="#" data-page="journal">Journal</a><a href="#" data-page="story">Sustainability</a></div>
+          <div class="footer-col"><h4>Support</h4><a href="#" data-page="subscription">Contact</a><a href="#" data-page="subscription">Shipping & Returns</a><a href="#" data-page="subscription">FAQ</a></div>
+          <div class="footer-col"><h4>Legal</h4><a href="#">Privacy Policy</a><a href="#">Terms of Service</a></div>
+        </div>
+        <div class="footer-bottom">
+          <span>© 2024 ÉLYSÉE COFFEE. All rights reserved.</span>
+          <span>Élysée</span>
+        </div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ========================================
+       PAGE: SHOP
+       ======================================== -->
+  <section class="page" id="page-shop">
+    <div class="page-header-std">
+      <div class="container">
+        <span class="label">The Collection</span>
+        <h1>Limited Editions</h1>
+        <p>Each lot is scored by certified Q-Graders and preserved at peak freshness. When it's gone, it's gone.</p>
+      </div>
+    </div>
+
+    <div class="container">
+      <div class="filters fade-in">
+        <button class="filter-btn active">All</button>
+        <button class="filter-btn">Single Origin</button>
+        <button class="filter-btn">Limited Edition</button>
+        <button class="filter-btn">Subscription Only</button>
+      </div>
+
+      <div class="product-grid">
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1611854779393-1b2da9d400fe?auto=format&fit=crop&w=800&q=80" alt="Panama Geisha"></div>
+          <div class="product-info">
+            <h3>Panama Geisha</h3>
+            <p class="product-meta">Capsules · Limited Edition</p>
+            <p class="product-price">$52.00 <span>($5.20 / capsule)</span></p>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Ethiopia Yirgacheffe"></div>
+          <div class="product-info">
+            <h3>Ethiopia Yirgacheffe</h3>
+            <p class="product-meta">Capsules · Single Origin</p>
+            <p class="product-price">$38.00 <span>($3.80 / capsule)</span></p>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Colombia Micro-lot"></div>
+          <div class="product-info">
+            <h3>Colombia Micro-lot</h3>
+            <p class="product-meta">Capsules · Seasonal</p>
+            <p class="product-price">$42.00 <span>($4.20 / capsule)</span></p>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80" alt="Jamaica Blue Mountain"></div>
+          <div class="product-info">
+            <h3>Jamaica Blue Mountain</h3>
+            <p class="product-meta">Capsules · Rare</p>
+            <p class="product-price">$68.00 <span>($6.80 / capsule)</span></p>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1504630083234-14187a9df0f5?auto=format&fit=crop&w=800&q=80" alt="Kenya AA"></div>
+          <div class="product-info">
+            <h3>Kenya AA Top</h3>
+            <p class="product-meta">Capsules · Single Origin</p>
+            <p class="product-price">$36.00 <span>($3.60 / capsule)</span></p>
+          </div>
+        </div>
+        <div class="product-card fade-in">
+          <div class="product-image"><img src="https://images.unsplash.com/photo-1512568400610-62da28bc8a13?auto=format&fit=crop&w=800&q=80" alt="St Helena"></div>
+          <div class="product-info">
+            <h3>St. Helena</h3>
+            <p class="product-meta">Capsules · Limited Run</p>
+            <p class="product-price">$58.00 <span>($5.80 / capsule)</span></p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col"><h4>Shop</h4><a href="#" data-page="shop">All Coffees</a><a href="#" data-page="subscription">Subscriptions</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="#" data-page="story">Our Story</a><a href="#" data-page="journal">Journal</a></div>
+          <div class="footer-col"><h4>Support</h4><a href="#" data-page="subscription">Contact</a><a href="#" data-page="subscription">FAQ</a></div>
+          <div class="footer-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+        <div class="footer-bottom"><span>© 2024 ÉLYSÉE COFFEE</span><span>Élysée</span></div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ========================================
+       PAGE: STORY
+       ======================================== -->
+  <section class="page" id="page-story">
+    <div class="story-hero">
+      <img src="https://images.unsplash.com/photo-1524350876685-274059332603?auto=format&fit=crop&w=1920&q=80" alt="Coffee farm at sunrise">
+      <div class="overlay"></div>
+      <div class="content">
+        <span class="label" style="color: var(--accent);">Origin</span>
+        <h1>Born in the Mountains</h1>
+      </div>
+    </div>
+
+    <div class="editorial container">
+      <div class="editorial-grid">
+        <div class="editorial-image fade-in"><img src="https://images.unsplash.com/photo-1511537632536-b7a4796929d9?auto=format&fit=crop&w=1000&q=80" alt="Hand picking coffee"></div>
+        <div class="editorial-content fade-in">
+          <div class="line-accent line-accent-left"></div>
+          <h2>We Don't Blend Away Character</h2>
+          <p class="editorial-quote">"Our relationship with producers goes beyond fair trade. We visit each farm personally, cupping dozens of samples until we find the lot that stops the conversation."</p>
+          <p>Every bean is hand-picked at peak ripeness, processed within hours, and stored in climate-controlled conditions. We pay 4–10x commodity prices—not as charity, but as recognition of true quality.</p>
+          <p>The result is a portfolio of coffees as distinct as the soils they come from. Now perfectly preserved in recyclable aluminum capsules compatible with your Nespresso® system.</p>
+          <a href="#" class="btn" data-page="shop">Explore the Collection</a>
+        </div>
+      </div>
+    </div>
+
+    <div class="process container">
+      <span class="label">Process</span>
+      <h2>From Cherry to Capsule</h2>
+      <div class="process-grid">
+        <div class="process-step fade-in">
+          <h3>01. Source</h3>
+          <p>We buy only auction lots, Cup of Excellence winners, and farm-direct micro-lots scored 87+ by certified Q-Graders.</p>
+        </div>
+        <div class="process-step fade-in">
+          <h3>02. Roast</h3>
+          <p>Roasted in 5kg batches on vintage Probat drums. No automation—every batch is monitored by a master roaster.</p>
+        </div>
+        <div class="process-step fade-in">
+          <h3>03. Preserve</h3>
+          <p>Immediately flushed with nitrogen and sealed in infinitely recyclable aluminum to lock in aromatics for 18 months.</p>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col"><h4>Shop</h4><a href="#" data-page="shop">All Coffees</a><a href="#" data-page="subscription">Subscriptions</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="#" data-page="story">Our Story</a><a href="#" data-page="journal">Journal</a></div>
+          <div class="footer-col"><h4>Support</h4><a href="#" data-page="subscription">Contact</a><a href="#" data-page="subscription">FAQ</a></div>
+          <div class="footer-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+        <div class="footer-bottom"><span>© 2024 ÉLYSÉE COFFEE</span><span>Élysée</span></div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ========================================
+       PAGE: SUBSCRIPTION
+       ======================================== -->
+  <section class="page" id="page-subscription">
+    <div class="page-header-std">
+      <div class="container">
+        <span class="label">Membership</span>
+        <h1>Join the Inner Circle</h1>
+        <p>Never miss a limited release. Exclusive pricing, free shipping, and first access to rare lots.</p>
+      </div>
+    </div>
+
+    <div class="container plans">
+      <div class="plan fade-in">
+        <h3>Explorer</h3>
+        <div class="price">$32<span>/mo</span></div>
+        <ul>
+          <li>10 capsules monthly</li>
+          <li>Standard collection</li>
+          <li>Free shipping</li>
+          <li>Monthly tasting notes</li>
+        </ul>
+        <button class="btn">Select</button>
+      </div>
+      <div class="plan featured fade-in">
+        <div class="plan-tag">Most Popular</div>
+        <h3>Connoisseur</h3>
+        <div class="price">$58<span>/mo</span></div>
+        <ul>
+          <li>20 capsules monthly</li>
+          <li>Access to limited lots</li>
+          <li>Free express shipping</li>
+          <li>Exclusive digital tastings</li>
+        </ul>
+        <button class="btn btn-solid">Select</button>
+      </div>
+      <div class="plan fade-in">
+        <h3>Collector</h3>
+        <div class="price">$110<span>/mo</span></div>
+        <ul>
+          <li>40 capsules monthly</li>
+          <li>All rare + auction lots</li>
+          <li>Priority fulfillment</li>
+          <li>Quarterly gift box</li>
+        </ul>
+        <button class="btn">Select</button>
+      </div>
+    </div>
+
+    <div class="benefits container">
+      <span class="label">Why Subscribe</span>
+      <h2>Membership Perks</h2>
+      <div class="benefits-grid">
+        <div class="benefit fade-in">
+          <h4>01. First Access</h4>
+          <p>Limited editions sell out in hours. Subscribers get 48-hour early access before the public.</p>
+        </div>
+        <div class="benefit fade-in">
+          <h4>02. Locked Pricing</h4>
+          <p>Your rate never increases, even when market prices for green coffee skyrocket.</p>
+        </div>
+        <div class="benefit fade-in">
+          <h4>03. Zero Waste</h4>
+          <p>We include a prepaid recycling envelope for your used aluminum capsules every month.</p>
+        </div>
+        <div class="benefit fade-in">
+          <h4>04. Personal Curation</h4>
+          <p>After your third month, our team curates your box based on your flavor preferences.</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="contact-form-section">
+      <h2>Questions?</h2>
+      <form class="contact-form" onsubmit="event.preventDefault(); alert('Message sent. We will reply within 24 hours.');">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Email Address" required>
+        <textarea rows="5" placeholder="How can we help?" required></textarea>
+        <button type="submit">Send Message</button>
+      </form>
+    </div>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-grid">
+          <div class="footer-col"><h4>Shop</h4><a href="#" data-page="shop">All Coffees</a><a href="#" data-page="subscription">Subscriptions</a></div>
+          <div class="footer-col"><h4>Company</h4><a href="#" data-page="story">Our Story</a><a href="#" data-page="journal">Journal</a></div>
+          <div class="footer-col"><h4>Support</h4><a href="#">Contact</a><a href="#">FAQ</a></div>
+          <div class="footer-col"><h4>Legal</h4><a href="#">Privacy</a><a href="#">Terms</a></div>
+        </div>
+        <div class="footer-bottom"><span>© 2024 ÉLYSÉE COFFEE</span><span>Élysée</span></div>
+      </div>
+    </footer>
+  </section>
+
+  <!-- ========================================
+       PAGE: JOURNAL
+       ======================================== -->
+  <section class="page" id="page-journal">
+    <div class="page-header-std">
+      <div class="container">
+        <span class="label">Editorial</span>
+        <h1>Journal</h1>
+        <p>Stories from origin, brewing science, and the culture of rare coffee.</p>
+      </div>
+    </div>
+
+    <div class="container journal-grid">
+      <article class="journal-card fade-in">
+        <div class="journal-image"><img src="https://images.unsplash.com/photo-1442512595331-e89e7385a861?auto=format&fit=crop&w=800&q=80" alt="Pour over coffee"></div>
+        <div class="journal-body">
+          <span class="cat">Brewing</span>
+          <h3>Understanding Ge
