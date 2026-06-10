@@ -115,7 +115,7 @@
     <header class="w-full border-b border-gray-900/50 bg-coffeeDark/80 backdrop-blur-md sticky top-0 z-40 px-4 md:px-6 py-3 flex justify-between items-center">
         <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
             <div class="flex flex-col justify-center items-center border border-coffeeGold/30 p-1 rounded w-8 h-8">
-                <!-- Icono SVG Logo (Hoja de Café) -->
+                <!-- Icono SVG Logo -->
                 <svg class="w-5 h-5 text-coffeeGold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
                     <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
@@ -766,4 +766,53 @@
         function closeModal() {
             modal.classList.add('opacity-0');
             modalContent.classList.add('scale-95');
-            setTimeout(() => modal.classList
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+
+        setTimeout(openModal, 5000); // Auto open
+        
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const btn = form.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Enviando...';
+            setTimeout(() => {
+                alert('¡PDF Enviado! Revisa tu correo.');
+                closeModal();
+                form.reset();
+                btn.innerHTML = 'Descargar PDF';
+            }, 1000);
+        });
+
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        closeMobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        // --- Intersection Observer for Animations ---
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', observeElements);
+    </script>
+</body>
+</html>
