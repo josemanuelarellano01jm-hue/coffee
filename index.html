@@ -3,302 +3,783 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Difference Coffee | The World's Rarest Coffee</title>
+    <title>Belgim C.A. | Venezuelan Premium Coffee Export Data</title>
     
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        gold: '#D4AF37',
-                        goldHover: '#B5952F',
-                        dark: '#0A0A0A',
-                        cream: '#FDFBF7'
+                        coffeeGold: '#c5a880',
+                        coffeeDark: '#0f0a06',
+                        coffeeCard: '#1c1510',
+                        coffeeGreen: '#2d4a3e',
+                        coffeeSlate: '#261f1a'
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
                         sans: ['Montserrat', 'sans-serif'],
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-10px)' },
+                        },
+                        fadeInUp: {
+                            '0%': { opacity: '0', transform: 'translateY(30px)' },
+                            '100%': { opacity: '1', transform: 'translateY(0)' },
+                        }
+                    },
+                    animation: {
+                        'float': 'float 6s ease-in-out infinite',
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
                     }
                 }
             }
         }
     </script>
 
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet">
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
 
     <style>
         body { font-family: 'Montserrat', sans-serif; }
-        h1, h2, h3, .font-serif { font-family: 'Playfair Display', serif; }
+        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
         
-        /* Efecto del fondo Hero */
-        .hero-particles {
-            background-image: radial-gradient(circle at center, rgba(212, 175, 55, 0.1) 0%, transparent 70%);
-        }
+        /* Scrollbar Premium */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #0f0a06; }
+        ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 3px; }
 
-        /* Overlay oscuro del Pop-up */
-        .modal-overlay {
-            background-color: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(5px);
-        }
+        /* Modal Blur */
+        .modal-blur { backdrop-filter: blur(12px); background-color: rgba(15, 10, 6, 0.92); }
 
-        /* Animaciones para el Pop-up */
-        .fade-in { animation: fadeIn 0.4s ease-out forwards; }
-        .fade-out { animation: fadeOut 0.4s ease-out forwards; }
-        
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(-10px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        @keyframes fadeOut {
-            from { opacity: 1; transform: translateY(0); }
-            to { opacity: 0; transform: translateY(-10px); }
+        /* Tab System */
+        .tab-content { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
+        .tab-content.active { display: block; opacity: 1; transform: translateY(0); }
+
+        /* Animación de aparición al scroll */
+        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
+        .reveal.visible { opacity: 1; transform: translateY(0); }
+
+        /* Zoom suave para imágenes */
+        .img-zoom-container { overflow: hidden; }
+        .img-zoom { transition: transform 0.7s ease; }
+        .img-zoom-container:hover .img-zoom { transform: scale(1.05); }
+
+        /* Video Background */
+        .video-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0.4;
+            z-index: 0;
         }
     </style>
 </head>
-<body class="bg-dark text-white antialiased overflow-x-hidden">
+<body class="bg-coffeeDark text-gray-100 antialiased min-h-screen flex flex-col justify-between">
 
-    <nav class="fixed w-full z-40 top-0 transition-all duration-300 py-6 px-8 flex justify-between items-center bg-dark/80 backdrop-blur-md border-b border-gray-900">
-        <div class="text-gold font-serif text-2xl tracking-widest cursor-pointer">DIFFERENCE</div>
-        <div class="hidden md:flex space-x-6 text-sm tracking-widest font-light">
-            <a href="#shop" class="hover:text-gold transition">SHOP</a>
-            <a href="#" class="hover:text-gold transition">SUBSCRIPTION</a>
-            <a href="#" class="hover:text-gold transition">ABOUT US</a>
-            <a href="#" class="hover:text-gold transition">CONTACT</a>
-        </div>
-        <div class="flex space-x-4">
-            <button class="hover:text-gold transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z"></path></svg></button>
-            <button class="hover:text-gold transition"><svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M16 11V7a4 4 0 00-8 0v4M5 9h14l1 12H4L5 9z"></path></svg></button>
-        </div>
-    </nav>
-
-    <header class="relative w-full h-screen flex items-center justify-center hero-particles bg-dark overflow-hidden">
-        <div class="relative z-10 text-center px-4 max-w-4xl mx-auto mt-20">
-            <h1 class="text-5xl md:text-7xl font-serif text-white mb-6 uppercase tracking-wide leading-tight">
-                The World's Rarest Coffee, <span class="text-gold italic">In Capsules</span>
-            </h1>
-            <p class="text-lg md:text-xl font-light text-gray-300 mb-10 max-w-2xl mx-auto">
-                Servido en más de 100 restaurantes con estrellas Michelin, ahora disponible para tu máquina Nespresso en casa.
-            </p>
-            <a href="#shop" class="inline-block bg-transparent border border-gold text-gold font-semibold py-4 px-10 rounded-full hover:bg-gold hover:text-dark transition-all duration-300 tracking-wider">
-                BEGIN YOUR TASTING
-            </a>
-        </div>
-    </header>
-
-    <section id="shop" class="bg-cream py-24 text-dark">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="text-center mb-16">
-                <span class="text-sm font-semibold tracking-widest text-gray-500 uppercase">Shop</span>
-                <h2 class="text-4xl font-serif text-dark mt-2">OUR BESTSELLERS</h2>
+    <!-- POPUP / MODAL AUTOMÁTICO -->
+    <div id="pdfModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur hidden opacity-0 transition-opacity duration-500">
+        <div class="bg-coffeeCard border border-coffeeGold/30 p-8 rounded-xl max-w-md w-full relative shadow-2xl transform scale-95 transition-transform duration-500" id="modalContent">
+            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-coffeeGold transition text-2xl">&times;</button>
+            <div class="text-center">
+                <span class="text-xs uppercase tracking-widest text-coffeeGold font-semibold">Exclusivo de Belgim C.A.</span>
+                <h3 class="text-2xl font-serif text-white mt-2 mb-4">Reporte del Café Venezolano 2026</h3>
+                <p class="text-xs text-gray-400 mb-6 leading-relaxed">Accede al estudio de mercado, rutas logísticas y marco legal CVC N° 025/2021.</p>
             </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
-                <div class="group cursor-pointer flex flex-col items-center text-center">
-                    <div class="relative w-full h-64 mb-6 flex justify-center items-center">
-                        <div class="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-500 shadow-md">
-                            [Imagen Cápsula 1]
-                        </div>
-                    </div>
-                    <span class="text-xs uppercase tracking-widest text-gold font-semibold mb-2">St Clouds Estate</span>
-                    <h3 class="text-xl font-serif mb-1">Jamaica Blue Mountain</h3>
-                    <p class="text-sm font-light text-gray-500 mb-4">Rich & Creamy</p>
-                    <p class="text-xs text-gray-600 mb-4 px-4">An absolute classic, and our best selling coffee. Smooth, mellow, chocolatey and nutty.</p>
-                    <p class="font-serif text-gold text-lg">$7 per capsule</p>
+            <form id="leadForm" class="space-y-4">
+                <div>
+                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-1">Nombre Completo</label>
+                    <input type="text" required class="w-full bg-coffeeDark border border-gray-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-coffeeGold transition">
                 </div>
-
-                <div class="group cursor-pointer flex flex-col items-center text-center">
-                    <div class="relative w-full h-64 mb-6 flex justify-center items-center">
-                        <div class="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-500 shadow-md">
-                            [Imagen Cápsula 2]
-                        </div>
-                    </div>
-                    <span class="text-xs uppercase tracking-widest text-gold font-semibold mb-2">Daterra Estate</span>
-                    <h3 class="text-xl font-serif mb-1">Brazil Yellow Bourbon</h3>
-                    <p class="text-sm font-light text-gray-500 mb-4">Chocolatey & Citrusy</p>
-                    <p class="text-xs text-gray-600 mb-4 px-4">Enter the world of Specialty Arabica with the coffee of choice of Michelin Restaurants.</p>
-                    <p class="font-serif text-gold text-lg">$2.00 per capsule</p>
+                <div>
+                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-1">Correo Corporativo</label>
+                    <input type="email" required class="w-full bg-coffeeDark border border-gray-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-coffeeGold transition">
                 </div>
-
-                <div class="group cursor-pointer flex flex-col items-center text-center">
-                    <div class="relative w-full h-64 mb-6 flex justify-center items-center">
-                        <div class="w-40 h-40 bg-gray-200 rounded-full flex items-center justify-center text-gray-400 group-hover:scale-105 transition-transform duration-500 shadow-md">
-                            [Imagen Cápsula 3]
-                        </div>
-                    </div>
-                    <span class="text-xs uppercase tracking-widest text-gold font-semibold mb-2">Gayo Estate</span>
-                    <h3 class="text-xl font-serif mb-1">Indonesia Kopi Luwak</h3>
-                    <p class="text-sm font-light text-gray-500 mb-4">Earthy & Complex</p>
-                    <p class="text-xs text-gray-600 mb-4 px-4">Wild sourced and ethically collected. A highly sought-after and exotic flavor profile.</p>
-                    <p class="font-serif text-gold text-lg">$10 per capsule</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-dark py-24 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 text-center">
-            <h2 class="text-sm font-semibold tracking-widest text-gold uppercase mb-16">KIND WORDS</h2>
-            <div class="flex flex-col md:flex-row justify-center items-start gap-12">
-                <div class="flex flex-col items-center max-w-sm">
-                    <div class="w-20 h-20 rounded-full border-2 border-gold mb-6 bg-gray-800 flex items-center justify-center text-xs text-gray-500">Foto</div>
-                    <h4 class="font-serif text-white text-lg uppercase">Manny Khoshbin</h4>
-                    <span class="text-xs text-gold tracking-widest mb-4">ENTREPRENEUR</span>
-                    <p class="font-serif text-gray-400 italic text-sm">"Been drinking Difference coffee for over 4 years now, the quality of beans and aroma is exceptional."</p>
-                </div>
-                
-                <div class="flex flex-col items-center max-w-sm">
-                    <div class="w-20 h-20 rounded-full border-2 border-gold mb-6 bg-gray-800 flex items-center justify-center text-xs text-gray-500">Foto</div>
-                    <h4 class="font-serif text-white text-lg uppercase">Bryan Adams</h4>
-                    <span class="text-xs text-gold tracking-widest mb-4">MUSICIAN</span>
-                    <p class="font-serif text-gray-400 italic text-sm">"Thanks to all at 'Difference' for the nice cups of coffee."</p>
-                </div>
-
-                <div class="flex flex-col items-center max-w-sm">
-                    <div class="w-20 h-20 rounded-full border-2 border-gold mb-6 bg-gray-800 flex items-center justify-center text-xs text-gray-500">Foto</div>
-                    <h4 class="font-serif text-white text-lg uppercase">Tom Stevenson</h4>
-                    <span class="text-xs text-gold tracking-widest mb-4">WINE AUTHOR</span>
-                    <p class="font-serif text-gray-400 italic text-sm">"After plowing my way through one highly praised Nespresso-compatible range after another, I found Difference Coffee to be in a completely different class."</p>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section class="bg-dark py-24 border-t border-gray-800">
-        <div class="max-w-6xl mx-auto px-4 flex flex-col md:flex-row items-center justify-between">
-            <div class="md:w-1/2 pr-0 md:pr-12 mb-10 md:mb-0">
-                <span class="text-6xl text-gold font-serif leading-none">“</span>
-                <p class="font-serif text-2xl md:text-3xl text-white leading-relaxed mb-8">
-                    I founded Difference Coffee with a single aim, to identify the world's best coffee estates, and to make them available to discerning coffee lovers.
-                </p>
-                <div class="text-sm tracking-widest uppercase">
-                    <span class="text-gold block mb-1">Amir Gehl</span>
-                    <span class="text-gray-500 font-semibold">Founder</span>
-                </div>
-            </div>
-            <div class="md:w-1/2 flex justify-center">
-                <div class="w-full max-w-md h-96 bg-gray-800 flex items-center justify-center text-gray-500 shadow-2xl">
-                    [Foto Amir Gehl sosteniendo cápsula]
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <div id="leadModal" class="fixed inset-0 z-50 flex items-center justify-center modal-overlay hidden px-4">
-        <div class="bg-dark border border-gold w-full max-w-4xl flex flex-col md:flex-row relative shadow-2xl rounded-sm overflow-hidden">
-            
-            <button id="closeModal" class="absolute top-4 right-4 text-gray-400 hover:text-gold transition z-10">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path></svg>
-            </button>
-
-            <div class="md:w-1/2 bg-black flex items-center justify-center p-8 border-b md:border-b-0 md:border-r border-gray-800">
-                <div class="w-64 h-80 bg-gray-800 flex items-center justify-center text-gray-500 transform -rotate-2 hover:rotate-0 transition duration-500 border border-gray-700 shadow-lg">
-                    [Portada del E-book Digital]
-                </div>
-            </div>
-
-            <div class="md:w-1/2 p-8 md:p-12 flex flex-col justify-center relative bg-dark">
-                <div id="formContent">
-                    <h2 class="text-3xl font-serif text-white mb-2">Descubre los Secretos del Café de Especialidad</h2>
-                    <p class="text-sm font-light text-gray-400 mb-8">Déjanos tu nombre y correo para recibir gratis nuestro exclusivo E-book sobre cómo degustar y preparar el mejor café del mundo.</p>
-                    
-                    <form id="leadForm" class="space-y-4">
-                        <div>
-                            <input type="text" id="name" required placeholder="Tu Nombre" class="w-full bg-transparent border-b border-gray-600 py-3 text-white focus:outline-none focus:border-gold transition-colors placeholder-gray-500 font-light text-sm">
-                        </div>
-                        <div>
-                            <input type="email" id="email" required placeholder="Tu Correo Electrónico" class="w-full bg-transparent border-b border-gray-600 py-3 text-white focus:outline-none focus:border-gold transition-colors placeholder-gray-500 font-light text-sm">
-                        </div>
-                        <button type="submit" class="w-full bg-gold text-dark font-semibold py-4 mt-6 hover:bg-goldHover transition-colors uppercase tracking-widest text-sm">
-                            Quiero mi E-book Gratis
-                        </button>
-                    </form>
-                </div>
-
-                <div id="successMessage" class="hidden absolute inset-0 bg-dark flex flex-col items-center justify-center p-8 text-center border border-gold z-20">
-                    <svg class="w-16 h-16 text-gold mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                    <h3 class="text-2xl font-serif text-white mb-2">¡Completado!</h3>
-                    <p class="text-gray-400 text-sm font-light">Revisa tu bandeja de entrada en los próximos minutos para descargar tu E-book.</p>
-                </div>
-            </div>
+                <button type="submit" class="w-full bg-coffeeGold hover:bg-yellow-700 text-coffeeDark font-semibold text-xs py-3 rounded uppercase tracking-widest transition-all duration-300 mt-2 shadow-lg">
+                    Descargar PDF
+                </button>
+            </form>
         </div>
     </div>
 
-    <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            const modal = document.getElementById('leadModal');
-            const closeBtn = document.getElementById('closeModal');
-            const leadForm = document.getElementById('leadForm');
-            const formContent = document.getElementById('formContent');
-            const successMessage = document.getElementById('successMessage');
+    <!-- HEADER / NAVIGATION -->
+    <header class="w-full border-b border-gray-900/50 bg-coffeeDark/80 backdrop-blur-md sticky top-0 z-40 px-4 md:px-6 py-3 flex justify-between items-center">
+        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
+            <div class="flex flex-col justify-center items-center border border-coffeeGold/30 p-1 rounded w-8 h-8">
+                <span class="text-coffeeGold text-xs font-serif leading-none">🍃</span>
+            </div>
+            <div class="text-lg font-serif tracking-widest text-white">BELGIM <span class="text-coffeeGold text-[10px] font-sans font-light tracking-normal hidden sm:inline">C.A.</span></div>
+        </div>
+        
+        <nav class="hidden md:flex space-x-8 text-[11px] tracking-widest uppercase font-semibold">
+            <button onclick="switchTab('home')" class="tab-btn text-coffeeGold border-b border-coffeeGold pb-1 transition-colors" data-tab="home">Inicio</button>
+            <button onclick="switchTab('about')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="about">Empresa</button>
+            <button onclick="switchTab('coffee')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="coffee">Catálogo</button>
+            <button onclick="switchTab('logistics')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="logistics">Logística</button>
+        </nav>
+        
+        <div class="flex items-center gap-3">
+            <button id="openModalBtn" class="border border-coffeeGold text-coffeeGold hover:bg-coffeeGold hover:text-coffeeDark text-[10px] font-semibold py-2 px-4 rounded transition duration-300 tracking-wider uppercase hidden sm:block">
+                Descargar PDF
+            </button>
+            <!-- Mobile Menu Button -->
+            <button id="mobileMenuBtn" class="md:hidden text-white">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
+            </button>
+        </div>
+    </header>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobileMenu" class="fixed inset-0 bg-coffeeDark z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 md:hidden">
+        <button id="closeMobileMenu" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
+        <div class="flex flex-col items-center space-y-8 text-center">
+            <button onclick="switchTab('home'); closeMobileMenu()" class="text-2xl font-serif text-white">Inicio</button>
+            <button onclick="switchTab('about'); closeMobileMenu()" class="text-2xl font-serif text-white">Empresa</button>
+            <button onclick="switchTab('coffee'); closeMobileMenu()" class="text-2xl font-serif text-white">Catálogo</button>
+            <button onclick="switchTab('logistics'); closeMobileMenu()" class="text-2xl font-serif text-white">Logística</button>
+        </div>
+    </div>
+
+    <!-- =================================================== -->
+    <!-- PESTAÑA: HOME (CON DATA DE IMÁGENES)               -->
+    <!-- =================================================== -->
+    <main id="tab-home" class="tab-content active flex-grow">
+        
+        <!-- HERO CON VIDEO DE FONDO -->
+        <section class="relative h-[90vh] md:h-screen flex items-center justify-center px-6 overflow-hidden">
+            <video autoplay muted loop playsinline class="video-bg">
+                <source src="https://videos.pexels.com/video-files/2883070/2883070-uhd_2560_1440_25fps.mp4" type="video/mp4">
+            </video>
+            <!-- Fallback Imagen 4K -->
+            <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=2400&q=80" alt="Coffee" class="video-bg" style="z-index: -1;">
             
-            let modalOpened = false;
+            <div class="absolute inset-0 bg-gradient-to-t from-coffeeDark via-coffeeDark/60 to-transparent z-[1]"></div>
+            
+            <div class="relative z-10 text-center max-w-4xl mx-auto">
+                <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">Corporación Venezolana del Café · CVC Norm N° 025/2021</span>
+                <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
+                    VENEZUELAN COFFEE <br><span class="italic text-coffeeGold font-normal">EXPORT REPORT</span>
+                </h1>
+                <p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s">
+                    Plataforma integral de comercialización y logística agroindustrial. Conectamos la alta montaña andina con los mercados globales más exigentes.
+                </p>
+                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.6s">
+                    <button onclick="switchTab('coffee')" class="bg-coffeeGold text-coffeeDark font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">Ver Catálogo</button>
+                    <button onclick="switchTab('logistics')" class="border border-white/30 text-white font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-white/10 transition backdrop-blur-sm transform hover:-translate-y-1">Rutas de Exportación</button>
+                </div>
+            </div>
+        </section>
 
-            // Función para abrir el modal
-            const openModal = () => {
-                // Verificar en sessionStorage si ya se capturó para no molestar
-                if (!modalOpened && !sessionStorage.getItem('leadCaptured')) {
-                    modal.classList.remove('hidden');
-                    modal.classList.add('fade-in');
-                    modalOpened = true;
-                }
-            };
+        <!-- SECCIÓN 1: DASHBOARD DE PRODUCCIÓN (Data de imagen 001047) -->
+        <section class="max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 reveal">
+                <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Production Dashboard</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Estadísticas de Producción Nacional</h2>
+            </div>
+            
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <!-- Card Stat 1 -->
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal">
+                    <div class="text-coffeeGold text-3xl mb-3">🗺️</div>
+                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">220,000</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Hectáreas Cultivadas</span>
+                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Superficie total activa en cultivo cafetalero.</p>
+                </div>
+                <!-- Card Stat 2 -->
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.1s">
+                    <div class="text-coffeeGold text-3xl mb-3">⚖️</div>
+                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">15</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">QQ por Hectárea</span>
+                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Rendimiento técnico promedio cosechado.</p>
+                </div>
+                <!-- Card Stat 3 -->
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.2s">
+                    <div class="text-coffeeGold text-3xl mb-3">🌱</div>
+                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">3,300,000</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Total Quintales</span>
+                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Volumen de producción nacional computado.</p>
+                </div>
+                <!-- Card Stat 4 -->
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.3s">
+                    <div class="text-coffeeGold text-3xl mb-3">📦</div>
+                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">46 Kg</span>
+                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Conversión</span>
+                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Equivalencia métrica estándar por quintal.</p>
+                </div>
+            </div>
 
-            // Función para cerrar el modal con animación
-            const closeModalFunc = () => {
-                modal.classList.remove('fade-in');
-                modal.classList.add('fade-out');
-                setTimeout(() => {
-                    modal.classList.add('hidden');
-                    modal.classList.remove('fade-out');
-                }, 400); 
-            };
+            <!-- Business Volume Highlight (Data de imagen 001047) -->
+            <div class="bg-gradient-to-r from-coffeeSlate to-coffeeCard border border-coffeeGold/20 rounded-xl p-8 flex flex-col lg:flex-row justify-between items-center gap-8 reveal overflow-hidden relative">
+                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-coffeeGold/10 rounded-full blur-3xl"></div>
+                <div class="relative z-10">
+                    <span class="text-[10px] uppercase tracking-widest text-coffeeGold font-bold block">Total Export Capacity & Business Volume</span>
+                    <h3 class="text-4xl md:text-5xl font-serif text-white font-semibold mt-2">$140,760,000 <span class="text-lg">USD</span></h3>
+                    <p class="text-xs text-gray-400 font-light mt-2">Ingresos anuales estimados por exportación agroindustrial.</p>
+                </div>
+                <div class="bg-coffeeDark px-8 py-5 rounded-lg border border-gray-800 text-center relative z-10">
+                    <span class="text-xs text-gray-500 block uppercase tracking-wider">Masa Neta Exportable</span>
+                    <span class="text-2xl font-serif text-coffeeGold font-semibold mt-1 block">41,400,000 Kg</span>
+                </div>
+            </div>
+        </section>
 
-            // 1. Mostrar Pop-up a los 3 segundos
-            setTimeout(openModal, 3000);
-
-            // 2. Mostrar Pop-up al intentar salir de la página (Exit-Intent)
-            document.addEventListener('mouseleave', (e) => {
-                if (e.clientY <= 0) {
-                    openModal();
-                }
-            });
-
-            // 3. Cerrar al hacer clic en la "X"
-            closeBtn.addEventListener('click', closeModalFunc);
-
-            // 4. Cerrar al hacer clic en el fondo oscuro (fuera de la caja)
-            modal.addEventListener('click', (e) => {
-                if (e.target === modal) {
-                    closeModalFunc();
-                }
-            });
-
-            // 5. Simular envío del formulario
-            leadForm.addEventListener('submit', (e) => {
-                e.preventDefault(); 
+        <!-- SECCIÓN 2: POSICIONAMIENTO GLOBAL (Data de imagen 001040) -->
+        <section class="bg-coffeeCard py-20 px-6 border-y border-gray-900">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
                 
-                // Mostrar animación de éxito
-                formContent.classList.add('hidden');
-                successMessage.classList.remove('hidden');
-                successMessage.classList.add('fade-in');
-                
-                // Guardar en la sesión que ya se registró
-                sessionStorage.setItem('leadCaptured', 'true');
+                <div class="lg:col-span-5 space-y-4 reveal">
+                    <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Global Market Context</span>
+                    <h2 class="text-3xl font-serif text-white">Estadísticas de Exportadores Líderes</h2>
+                    <p class="text-xs text-gray-400 leading-relaxed font-light">
+                        Venezuela cuenta con un potencial latente de exportación masivo. <b class="text-white">Belgim C.A.</b> se sitúa a la vanguardia para recuperar el rol histórico del café de origen venezolano.
+                    </p>
+                    <div class="p-4 bg-coffeeDark/60 border border-gray-800 rounded-lg">
+                        <div class="flex justify-between items-center text-xs">
+                            <span class="text-white font-medium">Capacidad de Exportación Belgim:</span>
+                            <span class="text-coffeeGold font-bold font-serif">900,000 QQ</span>
+                        </div>
+                        <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2 overflow-hidden">
+                            <div class="bg-coffeeGold h-full rounded-full" style="width: 75%"></div>
+                        </div>
+                        <span class="text-[10px] text-gray-500 block mt-1 font-light text-right">Equivalente a 41,400,000 Kg de capacidad instalada.</span>
+                    </div>
+                </div>
 
-                // Cerrar automáticamente después de 3.5 segundos
-                setTimeout(() => {
-                    closeModalFunc();
+                <div class="lg:col-span-7 reveal">
+                    <div class="bg-coffeeDark border border-gray-800 rounded-xl p-6 relative overflow-hidden">
+                        <!-- Imagen de fondo sutil 4K -->
+                        <img src="https://images.unsplash.com/photo-1523712995608-8d8a62ebd950?auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="World Map">
+                        <div class="relative z-10">
+                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-4 font-semibold">Top Exporters Rankings</span>
+                            <div class="space-y-3 font-sans text-xs">
+                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
+                                    <span class="text-gray-400"><b class="text-white mr-2">01</b> Brasil</span>
+                                    <span class="text-gray-500 font-serif text-xs">Líder Global</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
+                                    <span class="text-gray-400"><b class="text-white mr-2">02</b> Vietnam</span>
+                                    <span class="text-gray-500">Market Leader #2</span>
+                                </div>
+                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
+                                    <span class="text-gray-400"><b class="text-white mr-2">03</b> Colombia</span>
+                                    <span class="text-gray-500">Competidor Andino</span>
+                                </div>
+                                <div class="flex justify-between items-center pt-2 text-coffeeGold font-medium">
+                                    <span>⭐ Destacado: <b class="text-white ml-1">Venezuela (Belgim Origin)</b></span>
+                                    <span class="bg-coffeeGold/10 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Potencial Sin Tocar</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- SECCIÓN 3: INFOGRAFÍA 12 PASOS (Data de imagen 001112) -->
+        <section class="max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 reveal">
+                <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">From Harvest to Storage</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">El Proceso de Nuestro Café: Flujo Técnico</h2>
+            </div>
+
+            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                <!-- Step Cards con datos reales -->
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">01</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">HARVEST</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Recolección artesanal eligiendo exclusivamente frutos maduros.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">02</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">PRE-WASH</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Tanques técnicos para descartar frutos defectuosos.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">03</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">WASHING</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Flotación hidrodinámica para separar almendras menos densas.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">04</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">PULP</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Extracción de pulpa con precisión mecánica automatizada.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">05</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">FERMENTATION</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Fermentación bajo estrictos parámetros de control.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">06</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">DRYING</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Secado solar o en camas africanas técnicas.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">07</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">CLEANING</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Separación meticulosa de pergaminos y residuos.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">08</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">POLISHED</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Pulido completo para estandarización visual.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">09</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">STONE REMOVAL</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Filtro neumático de seguridad para impurezas pesadas.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">10</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">GRAVITY SEP.</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Separación por densidad de fracciones.</p>
+                </div>
+                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">11</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">SIZE CLASS.</h4>
+                    <p class="text-gray-500 text-[11px] leading-relaxed">Clasificación por tamaño mediante mallas técnicas.</p>
+                </div>
+                <div class="bg-gradient-to-br from-coffeeGreen/20 to-coffeeCard p-5 rounded-xl border border-coffeeGold/40 reveal">
+                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">12</div>
+                    <h4 class="text-white text-sm font-semibold mb-1">STORAGE</h4>
+                    <p class="text-gray-300 text-[11px] leading-relaxed">Almacenamiento seguro 60-90 días para estabilización.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 4: REQUERIMIENTOS DE EXPORTACIÓN (Data de imagen 001032 y 001054) -->
+        <section class="bg-coffeeCard py-20 px-6 border-t border-gray-900">
+            <div class="max-w-7xl mx-auto">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Export Requirements · CVC Norm N° 025/2021</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Procedimientos de Exportación</h2>
+                </div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                     
-                    // Resetear el formulario en el fondo
-                    setTimeout(() => {
-                        formContent.classList.remove('hidden');
-                        successMessage.classList.add('hidden');
-                        leadForm.reset();
-                    }, 500);
-                }, 3500);
+                    <!-- Lotes de Grandes Volúmenes -->
+                    <div class="bg-coffeeDark border border-gray-800 rounded-xl overflow-hidden reveal">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Shipping Containers" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 bg-orange-950/80 text-orange-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-orange-900/30">
+                                Large Quantities · Container Shipments
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-white mb-2">Embarques Marítimos Consolidados</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                                Logística a escala industrial para asociaciones de productores, plantas beneficiadoras e industria de torrefacción homologada.
+                            </p>
+                            <ul class="text-xs text-gray-400 space-y-2 font-light">
+                                <li class="flex items-center gap-2">• <b class="text-white">Green Coffee:</b> Exportación en sacos estándar de yute.</li>
+                                <li class="flex items-center gap-2">• <b class="text-white">Processed Coffee:</b> Roasted whole bean and/or ground coffee.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Lotes de Pequeños Volúmenes -->
+                    <div class="bg-coffeeDark border border-gray-800 rounded-xl overflow-hidden reveal" style="transition-delay: 0.2s">
+                        <div class="h-48 overflow-hidden relative">
+                            <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80" alt="Coffee Bags" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                            <div class="absolute top-4 left-4 bg-coffeeGreen/80 text-green-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-coffeeGreen/30">
+                                Small Quantities · Up to 60 Kg Net
+                            </div>
+                        </div>
+                        <div class="p-6">
+                            <h3 class="font-serif text-xl text-white mb-2">Directrices para Micro-Exportación</h3>
+                            <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                                Permisos simplificados para envíos individuales inferiores a un contenedor, ideales para muestras comerciales y cafés exóticos.
+                            </p>
+                            
+                            <div class="space-y-3">
+                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
+                                    <span class="text-gray-300 font-medium">🟢 Green Coffee Standard</span>
+                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Up to 60 kg</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
+                                    <span class="text-gray-300 font-medium">🟤 Specialty Coffee Certified</span>
+                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Up to 60 kg</span>
+                                </div>
+                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
+                                    <span class="text-gray-300 font-medium">🌿 Organic Coffee (INSAI)</span>
+                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Up to 60 kg</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- SECCIÓN 5: PIPELINE DOCUMENTAL (Data de imagen 001040) -->
+        <section class="max-w-7xl mx-auto px-6 py-20">
+            <div class="text-center mb-16 reveal">
+                <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Standardized Logistics Process</span>
+                <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Pipeline de Operaciones</h2>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-xs font-light">
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 border-t-2 border-coffeeGold reveal">
+                    <span class="text-xs uppercase font-mono tracking-wider text-gray-500 block mb-2">Fase 01</span>
+                    <h3 class="font-serif text-base text-white font-semibold mb-3">Documentation</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Gestión inicial: Proforma, Phytosanitary Certificate, ICO Certificate of Origin, y DUA Declaration.
+                    </p>
+                    <span class="text-[10px] block mt-4 text-coffeeGold uppercase font-semibold">Export Certification →</span>
+                </div>
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 border-t-2 border-coffeeGold reveal" style="transition-delay: 0.1s">
+                    <span class="text-xs uppercase font-mono tracking-wider text-gray-500 block mb-2">Fase 02</span>
+                    <h3 class="font-serif text-base text-white font-semibold mb-3">Logistics & Inspection</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Despliegue en puerto: Container Booking, INSAI Inspection, National Guard Clearance y Port Departure.
+                    </p>
+                    <span class="text-[10px] block mt-4 text-coffeeGold uppercase font-semibold">Container Loading Hub →</span>
+                </div>
+                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 border-t-2 border-coffeeGold reveal" style="transition-delay: 0.2s">
+                    <span class="text-xs uppercase font-mono tracking-wider text-gray-500 block mb-2">Fase 03</span>
+                    <h3 class="font-serif text-base text-white font-semibold mb-3">Foreign Exchange & Arrival</h3>
+                    <p class="text-gray-400 leading-relaxed">
+                        Cierre financiero: BCV Declaration, 180-Day Payment Window y VUCE Currency Sale Registration.
+                    </p>
+                    <span class="text-[10px] block mt-4 text-coffeeGold uppercase font-semibold">Customs Clearance VUCE →</span>
+                </div>
+            </div>
+
+            <div class="w-full bg-coffeeCard border border-gray-900 rounded-xl p-4 mt-6 text-center text-[10px] uppercase tracking-widest text-gray-500 font-medium reveal">
+                CVC NORM N° 025/2021 • Ventana Única de Comercio Exterior (VUCE) Integrada
+            </div>
+        </section>
+    </main>
+
+    <!-- =================================================== -->
+    <!-- PESTAÑA: ABOUT (EMPRESA)                            -->
+    <!-- =================================================== -->
+    <main id="tab-about" class="tab-content flex-grow">
+        <section class="relative py-24 px-6 overflow-hidden">
+            <div class="absolute inset-0 opacity-10">
+                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2400&q=80" class="w-full h-full object-cover">
+            </div>
+            <div class="max-w-5xl mx-auto relative z-10">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Corporate Profile</span>
+                    <h2 class="text-4xl md:text-5xl font-serif text-white mt-4">Rescatando el Legado Cafetalero</h2>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-16">
+                    <div class="reveal">
+                        <h3 class="text-xl font-serif text-white mb-4 border-l-2 border-coffeeGold pl-4">Misión</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Cautivar al mercado global con el café Premium de Venezuela, integrando tecnología de punta y un modelo de comercio justo que dignifique la labor del caficultor andino.
+                        </p>
+                    </div>
+                    <div class="reveal" style="transition-delay: 0.2s">
+                        <h3 class="text-xl font-serif text-white mb-4 border-l-2 border-coffeeGold pl-4">Visión</h3>
+                        <p class="text-sm text-gray-400 leading-relaxed">
+                            Posicionar al café venezolano en el segmento de especialidad mundial, siendo referentes de calidad, trazabilidad y sostenibilidad ambiental para el año 2030.
+                        </p>
+                    </div>
+                </div>
+
+                <!-- Stats Grid -->
+                <div class="bg-coffeeCard/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
+                    <div>
+                        <span class="text-3xl font-serif text-coffeeGold block">24</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Asociaciones Aliadas</span>
+                    </div>
+                    <div>
+                        <span class="text-3xl font-serif text-coffeeGold block">120</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Hectáreas Propias</span>
+                    </div>
+                    <div>
+                        <span class="text-3xl font-serif text-coffeeGold block">2.5K</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Productores</span>
+                    </div>
+                    <div>
+                        <span class="text-3xl font-serif text-coffeeGold block">900K</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">QQ Capacidad</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- =================================================== -->
+    <!-- PESTAÑA: COFFEE (CATÁLOGO)                          -->
+    <!-- =================================================== -->
+    <main id="tab-coffee" class="tab-content flex-grow bg-coffeeSlate/20 py-20 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Our Portfolio</span>
+                <h2 class="text-4xl font-serif text-white mt-2">Variedades de Alta Taza</h2>
+                <p class="text-sm text-gray-400 mt-4 max-w-2xl mx-auto">Selección exclusiva de cultivares adaptados a las alturas de los Andes venezolanos.</p>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product Card 1 -->
+                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Caturra" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-coffeeDark/80 text-coffeeGold text-[10px] px-3 py-1 rounded-full border border-coffeeGold/30">Premium</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Caturra</h3>
+                        <p class="text-xs text-gray-400 mb-4">Dulzura pronunciada, acidez media y cuerpo sedoso. Ideal para goteo.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-coffeeGold font-serif text-lg">$48.00 <span class="text-xs text-gray-500">/ QQ</span></span>
+                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 2 -->
+                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal" style="transition-delay: 0.1s">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Colombia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-coffeeGreen/80 text-white text-[10px] px-3 py-1 rounded-full">Organic</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Colombia</h3>
+                        <p class="text-xs text-gray-400 mb-4">Perfil equilibrado con notas de cacao y frutos rojos. Alta resistencia.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-coffeeGold font-serif text-lg">$52.00 <span class="text-xs text-gray-500">/ QQ</span></span>
+                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- Product Card 3 -->
+                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal" style="transition-delay: 0.2s">
+                    <div class="h-56 overflow-hidden relative">
+                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Criollo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
+                        <div class="absolute top-4 right-4 bg-orange-900/80 text-orange-300 text-[10px] px-3 py-1 rounded-full">Rare</div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="text-xl font-serif text-white mb-2">Criollo</h3>
+                        <p class="text-xs text-gray-400 mb-4">Variedad autóctona de baja producción pero sabor excepcional.</p>
+                        <div class="flex justify-between items-center">
+                            <span class="text-coffeeGold font-serif text-lg">$65.00 <span class="text-xs text-gray-500">/ QQ</span></span>
+                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =================================================== -->
+    <!-- PESTAÑA: LOGISTICS                                  -->
+    <!-- =================================================== -->
+    <main id="tab-logistics" class="tab-content flex-grow py-20 px-6">
+        <div class="max-w-6xl mx-auto">
+            <div class="text-center mb-16 reveal">
+                <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Global Trade</span>
+                <h2 class="text-4xl font-serif text-white mt-2">Rutas y Marco Legal</h2>
+            </div>
+
+            <!-- Timeline Visual -->
+            <div class="relative border-l-2 border-coffeeGold/30 ml-4 md:ml-0 md:mx-auto md:max-w-lg space-y-12 mb-20">
+                <!-- Step 1 -->
+                <div class="relative reveal">
+                    <div class="absolute -left-[25px] md:left-0 md:-translate-x-1/2 w-4 h-4 bg-coffeeGold rounded-full border-4 border-coffeeDark"></div>
+                    <div class="ml-8 md:ml-8 bg-coffeeCard p-6 rounded-lg border border-gray-800">
+                        <span class="text-coffeeGold text-xs font-bold uppercase tracking-wider">Fase 01</span>
+                        <h4 class="text-white font-serif text-lg mt-1">Documentación Inicial</h4>
+                        <p class="text-gray-400 text-xs mt-2">Proforma, Certificado Fitosanitario, Certificado de Origen ICO y Declaración DUA.</p>
+                    </div>
+                </div>
+                <!-- Step 2 -->
+                <div class="relative reveal" style="transition-delay: 0.2s">
+                    <div class="absolute -left-[25px] md:left-0 md:-translate-x-1/2 w-4 h-4 bg-coffeeGold rounded-full border-4 border-coffeeDark"></div>
+                    <div class="ml-8 md:ml-8 bg-coffeeCard p-6 rounded-lg border border-gray-800">
+                        <span class="text-coffeeGold text-xs font-bold uppercase tracking-wider">Fase 02</span>
+                        <h4 class="text-white font-serif text-lg mt-1">Inspección y Carga</h4>
+                        <p class="text-gray-400 text-xs mt-2">Reserva de contenedor, inspección INSAI, despacho de Guardia Nacional y salida desde La Guaira.</p>
+                    </div>
+                </div>
+                <!-- Step 3 -->
+                <div class="relative reveal" style="transition-delay: 0.4s">
+                    <div class="absolute -left-[25px] md:left-0 md:-translate-x-1/2 w-4 h-4 bg-coffeeGold rounded-full border-4 border-coffeeDark"></div>
+                    <div class="ml-8 md:ml-8 bg-coffeeCard p-6 rounded-lg border border-gray-800">
+                        <span class="text-coffeeGold text-xs font-bold uppercase tracking-wider">Fase 03</span>
+                        <h4 class="text-white font-serif text-lg mt-1">Cierre Cambiario</h4>
+                        <p class="text-gray-400 text-xs mt-2">Declaración BCV, ventana de pago de 180 días y registro de venta de divisas VUCE.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Transit Times -->
+            <div class="bg-coffeeCard border border-gray-800 rounded-xl p-8 reveal">
+                <h3 class="text-xl font-serif text-white mb-6 text-center">Tiempos de Tránsito Estimados</h3>
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4 text-center">
+                    <div class="p-4 bg-coffeeDark rounded-lg">
+                        <span class="block text-coffeeGold font-serif text-2xl">8-10</span>
+                        <span class="text-[10px] text-gray-500 uppercase tracking-wider">Días a USA Este</span>
+                    </div>
+                    <div class="p-4 bg-coffeeDark rounded-lg">
+                        <span class="block text-coffeeGold font-serif text-2xl">12-15</span>
+                        <span class="text-[10px] text-gray-500 uppercase tracking-wider">Días a USA Oeste</span>
+                    </div>
+                    <div class="p-4 bg-coffeeDark rounded-lg">
+                        <span class="block text-coffeeGold font-serif text-2xl">28-32</span>
+                        <span class="text-[10px] text-gray-500 uppercase tracking-wider">Días a Europa</span>
+                    </div>
+                    <div class="p-4 bg-coffeeDark rounded-lg">
+                        <span class="block text-coffeeGold font-serif text-2xl">45+</span>
+                        <span class="text-[10px] text-gray-500 uppercase tracking-wider">Días a Asia</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- =================================================== -->
+    <!-- FOOTER                                              -->
+    <!-- =================================================== -->
+    <footer class="w-full bg-coffeeDark py-12 px-6 border-t border-gray-900">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
+            <div class="md:col-span-2">
+                <div class="flex items-center space-x-3 mb-4">
+                    <div class="flex flex-col justify-center items-center border border-coffeeGold/30 p-1 rounded w-8 h-8">
+                        <span class="text-coffeeGold text-xs font-serif leading-none">🍃</span>
+                    </div>
+                    <div class="text-lg font-serif tracking-widest text-white">BELGIM C.A.</div>
+                </div>
+                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">
+                    Plataforma de exportación agroindustrial. Cumplimiento estricto de la Normativa CVC N° 025/2021.
+                </p>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Navegación</h4>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li><a href="#" onclick="switchTab('home')" class="hover:text-coffeeGold transition">Inicio</a></li>
+                    <li><a href="#" onclick="switchTab('about')" class="hover:text-coffeeGold transition">Empresa</a></li>
+                    <li><a href="#" onclick="switchTab('coffee')" class="hover:text-coffeeGold transition">Catálogo</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Legal</h4>
+                <ul class="space-y-2 text-xs text-gray-500">
+                    <li><a href="#" class="hover:text-coffeeGold transition">Términos de Uso</a></li>
+                    <li><a href="#" class="hover:text-coffeeGold transition">Política de Privacidad</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="border-t border-gray-900 pt-8 text-center text-[10px] text-gray-600">
+            © 2026 Belgim C.A. Todos los derechos reservados. Gaceta Oficial de la República Bolivariana de Venezuela.
+        </div>
+    </footer>
+
+    <!-- LÓGICA JS -->
+    <script>
+        // --- Sistema de Pestañas ---
+        function switchTab(tabId) {
+            // Ocultar todo
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
             });
+            
+            // Actualizar botones
+            document.querySelectorAll('.tab-btn').forEach(btn => {
+                btn.classList.remove('text-coffeeGold', 'border-b', 'border-coffeeGold');
+                btn.classList.add('text-gray-400');
+            });
+            
+            // Mostrar target
+            const targetContent = document.getElementById('tab-' + tabId);
+            if(targetContent) {
+                targetContent.classList.add('active');
+                // Reiniciar animaciones reveal dentro de la pestaña
+                targetContent.querySelectorAll('.reveal').forEach(el => {
+                    el.classList.remove('visible');
+                    setTimeout(() => observeElements(), 100);
+                });
+            }
+            
+            // Activar botón
+            const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
+            if(activeBtn) {
+                activeBtn.classList.remove('text-gray-400');
+                activeBtn.classList.add('text-coffeeGold', 'border-b', 'border-coffeeGold');
+            }
+
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // --- Modal Logic ---
+        const modal = document.getElementById('pdfModal');
+        const modalContent = document.getElementById('modalContent');
+        const openBtn = document.getElementById('openModalBtn');
+        const closeBtn = document.getElementById('closeModalBtn');
+        const form = document.getElementById('leadForm');
+
+        function openModal() {
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.remove('opacity-0');
+                modalContent.classList.remove('scale-95');
+            }, 10);
+        }
+
+        function closeModal() {
+            modal.classList.add('opacity-0');
+            modalContent.classList.add('scale-95');
+            setTimeout(() => modal.classList.add('hidden'), 500);
+        }
+
+        setTimeout(openModal, 5000); // Auto open
+        
+        openBtn.addEventListener('click', openModal);
+        closeBtn.addEventListener('click', closeModal);
+        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
+        
+        form.addEventListener('submit', (e) => {
+            e.preventDefault();
+            // Simular envío
+            const btn = form.querySelector('button[type="submit"]');
+            btn.innerHTML = 'Enviando...';
+            setTimeout(() => {
+                alert('¡PDF Enviado! Revisa tu correo.');
+                closeModal();
+                form.reset();
+                btn.innerHTML = 'Descargar PDF';
+            }, 1000);
         });
+
+        // --- Mobile Menu ---
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mobileMenu = document.getElementById('mobileMenu');
+        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+
+        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
+        closeMobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
+        
+        function closeMobileMenu() {
+            mobileMenu.classList.add('translate-x-full');
+        }
+
+        // --- Intersection Observer for Animations ---
+        const observeElements = () => {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+        };
+
+        document.addEventListener('DOMContentLoaded', observeElements);
     </script>
 </body>
 </html>
