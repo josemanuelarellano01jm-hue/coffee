@@ -154,43 +154,45 @@
         </div>
     </div>
 
-    <!-- =================================================== -->
-    <!-- PESTAÑA: HOME (INICIO)                              -->
-    <!-- =================================================== -->
     <main id="tab-home" class="tab-content active flex-grow">
-        <!-- Reemplaza toda tu etiqueta <video> por este iframe -->
-<div class="video-bg" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 0;">
-    <iframe 
-        src="https://player.vimeo.com/video/435191244?background=1&autoplay=1&loop=1&byline=0&title=0" 
-        width="100%" 
-        height="100%" 
-        frameborder="0" 
-        allow="autoplay; fullscreen" 
-        style="width: 100%; height: 100%; object-fit: cover;">
-    </iframe>
-</div>
-    <!-- Filtro oscuro para que el texto sea legible -->
-    <div class="absolute inset-0 bg-coffeeDark/70 z-0"></div>
+    
+    <!-- SECCIÓN HERO CON VIDEO Y FILTRO -->
+    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
+        
+        <!-- Contenedor del Video -->
+        <div class="absolute inset-0 z-0">
+            <iframe 
+                src="https://player.vimeo.com/video/435191244?background=1&autoplay=1&loop=1&byline=0&title=0" 
+                class="w-full h-full object-cover"
+                style="width: 100vw; height: 100vh; pointer-events: none;"
+                frameborder="0" 
+                allow="autoplay; fullscreen">
+            </iframe>
+        </div>
 
-    <div class="relative z-10 text-center max-w-4xl mx-auto">
-        <!-- ... resto de tu contenido del Hero ... -->
-    </div>
-</section>
-            <div class="relative z-10 text-center max-w-4xl mx-auto">
-                <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">Corporación Venezolana del Café · CVC Norm N° 025/2021</span>
-                <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
-                    REPORTE DE EXPORTACIÓN <br><span class="italic text-coffeeGold font-normal">CAFÉ VENEZOLANO</span>
-                </h1>
-                <p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s">
-                    Plataforma integral de comercialización y logística agroindustrial. Conectamos la alta montaña andina con los mercados globales más exigentes.
-                </p>
-                <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.6s">
-                    <button onclick="switchTab('coffee')" class="bg-coffeeGold text-coffeeDark font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">Ver Catálogo</button>
-                    <button onclick="switchTab('logistics')" class="border border-white/30 text-white font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-white/10 transition backdrop-blur-sm transform hover:-translate-y-1">Rutas de Exportación</button>
-                </div>
+        <!-- Filtro oscuro (Capa de lectura) -->
+        <div class="absolute inset-0 bg-coffeeDark/70 z-10"></div>
+
+        <!-- Contenido Central -->
+        <div class="relative z-20 text-center max-w-4xl mx-auto px-6">
+            <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">
+                Corporación Venezolana del Café · CVC Norm N° 025/2021
+            </span>
+            <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
+                REPORTE DE EXPORTACIÓN <br><span class="italic text-coffeeGold font-normal">CAFÉ VENEZOLANO</span>
+            </h1>
+            <p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s">
+                Plataforma integral de comercialización y logística agroindustrial. Conectamos la alta montaña andina con los mercados globales más exigentes.
+            </p>
+            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.6s">
+                <button onclick="switchTab('coffee')" class="bg-coffeeGold text-coffeeDark font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">Ver Catálogo</button>
+                <button onclick="switchTab('logistics')" class="border border-white/30 text-white font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-white/10 transition backdrop-blur-sm transform hover:-translate-y-1">Rutas de Exportación</button>
             </div>
-        </section>
+        </div>
+    </section>
 
+    <!-- AQUÍ CONTINÚAN TUS OTRAS SECCIONES... -->
+</main>
         <!-- SECCIÓN 1: DASHBOARD DE PRODUCCIÓN -->
         <section class="max-w-7xl mx-auto px-6 py-20">
             <div class="text-center mb-16 reveal">
