@@ -160,8 +160,21 @@
     <main id="tab-home" class="tab-content active flex-grow">
         
         <!-- HERO CON VIDEO DE FONDO -->
-   <source src="video coffe/fondo inicio.mp4" type="video/mp4">
-</video>     
+      <!-- HERO CON VIDEO DE FONDO -->
+<section class="relative h-screen flex items-center justify-center overflow-hidden">
+    <!-- El video debe estar dentro de la etiqueta <video> -->
+    <video autoplay loop muted playsinline class="video-bg">
+        <source src="video coffe/fondo inicio.mp4" type="video/mp4">
+        Tu navegador no soporta videos HTML5.
+    </video>
+    
+    <!-- Filtro oscuro para que el texto sea legible -->
+    <div class="absolute inset-0 bg-coffeeDark/70 z-0"></div>
+
+    <div class="relative z-10 text-center max-w-4xl mx-auto">
+        <!-- ... resto de tu contenido del Hero ... -->
+    </div>
+</section>
             <div class="relative z-10 text-center max-w-4xl mx-auto">
                 <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">Corporación Venezolana del Café · CVC Norm N° 025/2021</span>
                 <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
