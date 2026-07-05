@@ -156,19 +156,34 @@
 
     <main id="tab-home" class="tab-content active flex-grow">
     
-    <!-- SECCIÓN HERO CON VIDEO Y FILTRO -->
+    <main id="tab-home" class="tab-content active flex-grow">
+    
+    <!-- INICIO DE TU HERO -->
     <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
         
-        <!-- Contenedor del Video -->
-        <div class="absolute inset-0 z-0">
-            <iframe 
-                src="https://player.vimeo.com/video/435191244?background=1&autoplay=1&loop=1&byline=0&title=0" 
-                class="w-full h-full object-cover"
-                style="width: 100vw; height: 100vh; pointer-events: none;"
-                frameborder="0" 
-                allow="autoplay; fullscreen">
-            </iframe>
+        <!-- Pega el código del video AQUÍ -->
+        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
+            <!-- Asegúrate de cambiar 'tu-carpeta/tu-video.mp4' por la ruta real -->
+            <source src="video%20coffe/fondo%20inicio.mp4" type="video/mp4">
+        </video>     
+
+        <!-- Filtro oscuro para que el texto sea legible -->
+        <div class="absolute inset-0 bg-coffeeDark/70 z-10"></div>
+
+        <!-- Tu contenido (Texto, Botones, etc.) -->
+        <div class="relative z-20 text-center max-w-4xl mx-auto px-6">
+            <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">
+                Corporación Venezolana del Café · CVC Norm N° 025/2021
+            </span>
+            <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
+                REPORTE DE EXPORTACIÓN <br><span class="italic text-coffeeGold font-normal">CAFÉ VENEZOLANO</span>
+            </h1>
+            <!-- ... resto de tu contenido ... -->
         </div>
+    </section>
+    <!-- FIN DE TU HERO -->
+
+</main>
 
         <!-- Filtro oscuro (Capa de lectura) -->
         <div class="absolute inset-0 bg-coffeeDark/70 z-10"></div>
