@@ -1,835 +1,850 @@
 <!DOCTYPE html>
 <html lang="es" class="scroll-smooth">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Belgim C.A. | Datos de Exportación de Café Premium Venezolano</title>
-    
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Grano a Grano Coffee Holdings</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com">
+    </script>
     <script>
         tailwind.config = {
             theme: {
                 extend: {
                     colors: {
-                        coffeeGold: '#c5a880',
-                        coffeeDark: '#0f0a06',
-                        coffeeCard: '#1c1510',
-                        coffeeGreen: '#2d4a3e',
-                        coffeeSlate: '#261f1a'
+                        primary: '#c49a6c',
+                        dark: '#1a1a1a',
+                        card: '#2a2a2a',
+                        light: '#f5f0eb',
                     },
                     fontFamily: {
                         serif: ['"Playfair Display"', 'serif'],
                         sans: ['Montserrat', 'sans-serif'],
                     },
-                    keyframes: {
-                        float: {
-                            '0%, 100%': { transform: 'translateY(0px)' },
-                            '50%': { transform: 'translateY(-10px)' },
-                        },
-                        fadeInUp: {
-                            '0%': { opacity: '0', transform: 'translateY(30px)' },
-                            '100%': { opacity: '1', transform: 'translateY(0)' },
-                        }
-                    },
-                    animation: {
-                        'float': 'float 6s ease-in-out infinite',
-                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
-                    }
-                }
-            }
+                },
+            },
         }
     </script>
 
     <!-- Google Fonts -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <style>
-        body { font-family: 'Montserrat', sans-serif; }
-        h1, h2, h3, h4, .font-serif { font-family: 'Playfair Display', serif; }
-        
-        /* Scrollbar Premium */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #0f0a06; }
-        ::-webkit-scrollbar-thumb { background: #c5a880; border-radius: 3px; }
+        body {
+            font-family: 'Montserrat', sans-serif;
+            background-color: #1a1a1a;
+            color: #f5f0eb;
+        }
+        h1,
+        h2,
+        h3,
+        h4,
+        .font-serif {
+            font-family: 'Playfair Display', serif;
+        }
 
-        /* Modal Blur */
-        .modal-blur { backdrop-filter: blur(12px); background-color: rgba(15, 10, 6, 0.92); }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1a1a1a;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #c49a6c;
+            border-radius: 3px;
+        }
 
-        /* Tab System */
-        .tab-content { display: none; opacity: 0; transform: translateY(20px); transition: opacity 0.5s ease, transform 0.5s ease; }
-        .tab-content.active { display: block; opacity: 1; transform: translateY(0); }
-
-        /* Animación de aparición al scroll */
-        .reveal { opacity: 0; transform: translateY(40px); transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1); }
-        .reveal.visible { opacity: 1; transform: translateY(0); }
-
-        /* Zoom suave para imágenes */
-        .img-zoom-container { overflow: hidden; }
-        .img-zoom { transition: transform 0.7s ease; }
-        .img-zoom-container:hover .img-zoom { transform: scale(1.05); }
-
-        /* Video Background */
-        .video-bg {
-            position: absolute;
-            top: 0;
-            left: 0;
+        .slideshow-container {
+            position: relative;
             width: 100%;
-            height: 100%;
-            object-fit: cover;
-            opacity: 0.4;
-            z-index: 0;
+            height: 100vh;
+            overflow: hidden;
+        }
+        .slide {
+            position: absolute;
+            inset: 0;
+            background-size: cover;
+            background-position: center;
+            opacity: 0;
+            transition: opacity 1.5s ease-in-out;
+        }
+        .slide.active {
+            opacity: 1;
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .nav-bg {
+            background: rgba(26, 26, 26, 0.92);
+            backdrop-filter: blur(8px);
+        }
+
+        .service-card {
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+        .service-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+        }
+
+        .page {
+            display: none;
+        }
+        .page.active {
+            display: block;
+        }
+
+        .product-submenu a {
+            transition: all 0.2s;
+        }
+        .product-submenu a.active {
+            color: #c49a6c;
+            border-bottom: 2px solid #c49a6c;
         }
     </style>
 </head>
-<body class="bg-coffeeDark text-gray-100 antialiased min-h-screen flex flex-col justify-between">
 
-    <!-- POPUP / MODAL AUTOMÁTICO -->
-    <div id="pdfModal" class="fixed inset-0 z-50 flex items-center justify-center p-4 modal-blur hidden opacity-0 transition-opacity duration-500">
-        <div class="bg-coffeeCard border border-coffeeGold/30 p-8 rounded-xl max-w-md w-full relative shadow-2xl transform scale-95 transition-transform duration-500" id="modalContent">
-            <button id="closeModalBtn" class="absolute top-4 right-4 text-gray-400 hover:text-coffeeGold transition text-2xl">&times;</button>
-            <div class="text-center">
-                <span class="text-xs uppercase tracking-widest text-coffeeGold font-semibold">Exclusivo de Belgim C.A.</span>
-                <h3 class="text-2xl font-serif text-white mt-2 mb-4">Reporte del Café Venezolano 2026</h3>
-                <p class="text-xs text-gray-400 mb-6 leading-relaxed">Accede al estudio de mercado, rutas logísticas y marco legal CVC N° 025/2021.</p>
-            </div>
-            <form id="leadForm" class="space-y-4">
-                <div>
-                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-1">Nombre Completo</label>
-                    <input type="text" required class="w-full bg-coffeeDark border border-gray-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-coffeeGold transition">
-                </div>
-                <div>
-                    <label class="block text-[11px] uppercase tracking-wider text-gray-400 mb-1">Correo Corporativo</label>
-                    <input type="email" required class="w-full bg-coffeeDark border border-gray-800 rounded px-3 py-2 text-sm text-white focus:outline-none focus:border-coffeeGold transition">
-                </div>
-                <button type="submit" class="w-full bg-coffeeGold hover:bg-yellow-700 text-coffeeDark font-semibold text-xs py-3 rounded uppercase tracking-widest transition-all duration-300 mt-2 shadow-lg">
-                    Descargar PDF
-                </button>
-            </form>
-        </div>
-    </div>
+<body>
 
-    <!-- HEADER / NAVIGATION -->
-    <header class="w-full border-b border-gray-900/50 bg-coffeeDark/80 backdrop-blur-md sticky top-0 z-40 px-4 md:px-6 py-3 flex justify-between items-center">
-        <div class="flex items-center space-x-3 cursor-pointer" onclick="switchTab('home')">
-            <div class="flex flex-col justify-center items-center border border-coffeeGold/30 p-1 rounded w-8 h-8">
-                <!-- Icono SVG Logo -->
-                <svg class="w-5 h-5 text-coffeeGold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 10c1.5-1.5 4.5-1.5 6 0" />
-                </svg>
-            </div>
-            <div class="text-lg font-serif tracking-widest text-white">BELGIM <span class="text-coffeeGold text-[10px] font-sans font-light tracking-normal hidden sm:inline">C.A.</span></div>
+    <!-- ========== HEADER FIJO ========== -->
+    <header class="fixed top-0 left-0 w-full z-50 nav-bg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 flex items-center justify-between">
+            <!-- Logo -->
+            <a href="#" onclick="navigateTo('inicio')" class="flex items-center gap-2 cursor-pointer">
+                <img src="https://cafegranoagrano.com/wp-content/uploads/2026/02/isotipo-blanco.svg" alt="Grano a Grano" class="h-10 w-auto" />
+                <span class="text-lg font-serif tracking-widest text-white hidden sm:block">Belgim</span>
+            </a>
+
+            <!-- Desktop Nav -->
+            <nav class="hidden md:flex items-center gap-6 text-xs uppercase tracking-widest font-semibold">
+                <a href="#" onclick="navigateTo('inicio')" class="text-primary border-b-2 border-primary pb-1" data-page="inicio">Inicio</a>
+                <a href="#" onclick="navigateTo('historia')" class="text-gray-300 hover:text-white transition pb-1" data-page="historia">Historia</a>
+                <a href="#" onclick="navigateTo('roasted')" class="text-gray-300 hover:text-white transition pb-1" data-page="roasted">Roasted Coffee &amp; Roasting Solutions</a>
+                <a href="#" onclick="navigateTo('green')" class="text-gray-300 hover:text-white transition pb-1" data-page="green">Green Coffee Trading</a>
+                <a href="#" onclick="navigateTo('contacto')" class="text-gray-300 hover:text-white transition pb-1" data-page="contacto">Contacto</a>
+            </nav>
+
+            <!-- Mobile Toggle -->
+            <button id="menuToggle" class="md:hidden text-white text-2xl focus:outline-none">
+                ☰
+            </button>
         </div>
-        
-        <nav class="hidden md:flex space-x-8 text-[11px] tracking-widest uppercase font-semibold">
-            <button onclick="switchTab('home')" class="tab-btn text-coffeeGold border-b border-coffeeGold pb-1 transition-colors" data-tab="home">Inicio</button>
-            <button onclick="switchTab('about')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="about">Empresa</button>
-            <button onclick="switchTab('coffee')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="coffee">Catálogo</button>
-            <button onclick="switchTab('logistics')" class="tab-btn text-gray-400 hover:text-white pb-1 transition-colors" data-tab="logistics">Logística</button>
-        </nav>
-        
-        <div class="flex items-center gap-3">
-            <button id="openModalBtn" class="border border-coffeeGold text-coffeeGold hover:bg-coffeeGold hover:text-coffeeDark text-[10px] font-semibold py-2 px-4 rounded transition duration-300 tracking-wider uppercase hidden sm:block">
-                Descargar PDF
-            </button>
-            <!-- Mobile Menu Button -->
-            <button id="mobileMenuBtn" class="md:hidden text-white">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path></svg>
-            </button>
+
+        <!-- Mobile Nav -->
+        <div id="mobileMenu" class="md:hidden hidden bg-dark/95 backdrop-blur-md border-t border-white/10 px-6 py-4">
+            <div class="flex flex-col gap-4 text-sm uppercase tracking-widest font-semibold">
+                <a href="#" onclick="navigateTo('inicio'); closeMobile()" class="text-primary">Inicio</a>
+                <a href="#" onclick="navigateTo('historia'); closeMobile()" class="text-gray-300 hover:text-white transition">Historia</a>
+                <a href="#" onclick="navigateTo('roasted'); closeMobile()" class="text-gray-300 hover:text-white transition">Roasted Coffee &amp; Roasting Solutions</a>
+                <a href="#" onclick="navigateTo('green'); closeMobile()" class="text-gray-300 hover:text-white transition">Green Coffee Trading</a>
+                <a href="#" onclick="navigateTo('contacto'); closeMobile()" class="text-gray-300 hover:text-white transition">Contacto</a>
+            </div>
         </div>
     </header>
 
-    <!-- Mobile Menu Overlay -->
-    <div id="mobileMenu" class="fixed inset-0 bg-coffeeDark z-50 flex flex-col items-center justify-center transform translate-x-full transition-transform duration-300 md:hidden">
-        <button id="closeMobileMenu" class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-        <div class="flex flex-col items-center space-y-8 text-center">
-            <button onclick="switchTab('home'); closeMobileMenu()" class="text-2xl font-serif text-white">Inicio</button>
-            <button onclick="switchTab('about'); closeMobileMenu()" class="text-2xl font-serif text-white">Empresa</button>
-            <button onclick="switchTab('coffee'); closeMobileMenu()" class="text-2xl font-serif text-white">Catálogo</button>
-            <button onclick="switchTab('logistics'); closeMobileMenu()" class="text-2xl font-serif text-white">Logística</button>
+    <!-- ============================================================ -->
+    <!-- ==================== CONTENEDOR DE PÁGINAS ==================== -->
+    <!-- ============================================================ -->
+
+    <div class="pt-16">
+        <!-- ========================================================== -->
+        <!-- PÁGINA: INICIO (con toda la información ampliada)           -->
+        <!-- ========================================================== -->
+        <div id="page-inicio" class="page active">
+            <!-- Slideshow -->
+            <section class="slideshow-container">
+                <div class="slide active" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg');"></div>
+                <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3076.jpg');"></div>
+                <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_2773-1.jpg');"></div>
+
+                <div class="absolute inset-0 bg-black/50 z-10"></div>
+                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
+                    <div class="max-w-4xl">
+                        <img src="https://cafegranoagrano.com/wp-content/uploads/2026/02/isotipo-mostaza.svg" alt="Grano a Grano" class="h-24 mx-auto mb-6" />
+                        <h1 class="text-4xl md:text-6xl font-serif text-white leading-tight">
+                              Exportacion de<br />
+                            <span class="text-primary italic">Cafe Venezolano</span>
+                        </h1>
+                        <p class="text-sm md:text-base text-gray-300 max-w-2xl mx-auto mt-6 font-light leading-relaxed">
+                            Somos un grupo empresarial venezolano especializado en el desarrollo integral de la cadena de valor del café venezolano, operando bajo parámetros internacionales de gestión de calidad, profesionalismo y excelencia operativa.
+                        </p>
+                        <div class="mt-8 flex flex-wrap justify-center gap-4">
+                            <a href="#" onclick="navigateTo('roasted')" class="bg-primary text-dark font-semibold text-xs px-8 py-3 rounded uppercase tracking-widest hover:bg-opacity-80 transition">Nuestros Servicios</a>
+                            <a href="#" onclick="navigateTo('contacto')" class="border border-white/30 text-white font-semibold text-xs px-8 py-3 rounded uppercase tracking-widest hover:bg-white/10 transition">Contáctanos</a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="absolute bottom-8 left-1/2 -translate-x-1/2 z-30 flex gap-3">
+                    <span class="dot w-3 h-3 rounded-full bg-primary cursor-pointer" data-index="0"></span>
+                    <span class="dot w-3 h-3 rounded-full bg-white/40 cursor-pointer" data-index="1"></span>
+                    <span class="dot w-3 h-3 rounded-full bg-white/40 cursor-pointer" data-index="2"></span>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 1: DASHBOARD DE PRODUCCIÓN -->
+            <section class="max-w-7xl mx-auto px-6 py-20">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-xs font-semibold tracking-widest text-primary uppercase">Panel de Producción</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Estadísticas de Producción Nacional</h2>
+                </div>
+
+                <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                    <!-- Card Stat 1 -->
+                    <div class="bg-card p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-2 reveal">
+                        <div class="text-primary mb-3">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
+                        </div>
+                        <span class="text-3xl md:text-4xl font-serif text-white font-bold block">220,000</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Hectáreas Cultivadas</span>
+                        <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Superficie total activa en cultivo cafetalero.</p>
+                    </div>
+                    <!-- Card Stat 2 -->
+                    <div class="bg-card p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.1s">
+                        <div class="text-primary mb-3">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
+                        </div>
+                        <span class="text-3xl md:text-4xl font-serif text-white font-bold block">15</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">QQ por Hectárea</span>
+                        <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Rendimiento técnico promedio cosechado.</p>
+                    </div>
+                    <!-- Card Stat 3 -->
+                    <div class="bg-card p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.2s">
+                        <div class="text-primary mb-3">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
+                        </div>
+                        <span class="text-3xl md:text-4xl font-serif text-white font-bold block">3,300,000</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Total Quintales</span>
+                        <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Volumen de producción nacional computado.</p>
+                    </div>
+                    <!-- Card Stat 4 -->
+                    <div class="bg-card p-6 rounded-xl border border-gray-800 hover:border-primary/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.3s">
+                        <div class="text-primary mb-3">
+                            <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
+                        </div>
+                        <span class="text-3xl md:text-4xl font-serif text-white font-bold block">46 Kg</span>
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Conversión</span>
+                        <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Equivalencia métrica estándar por quintal.</p>
+                    </div>
+                </div>
+
+                <!-- Business Volume Highlight -->
+                <div class="bg-gradient-to-r from-card/80 to-card border border-primary/20 rounded-xl p-8 flex flex-col lg:flex-row justify-between items-center gap-8 reveal overflow-hidden relative">
+                    <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-primary/10 rounded-full blur-3xl"></div>
+                    <div class="relative z-10">
+                        <span class="text-[10px] uppercase tracking-widest text-primary font-bold block">Capacidad Total de Exportación y Volumen Comercial</span>
+                        <h3 class="text-4xl md:text-5xl font-serif text-white font-semibold mt-2">$140,760,000 <span class="text-lg">USD</span></h3>
+                        <p class="text-xs text-gray-400 font-light mt-2">Ingresos anuales estimados por exportación agroindustrial.</p>
+                    </div>
+                    <div class="bg-dark px-8 py-5 rounded-lg border border-gray-800 text-center relative z-10">
+                        <span class="text-xs text-gray-500 block uppercase tracking-wider">Masa Neta Exportable</span>
+                        <span class="text-2xl font-serif text-primary font-semibold mt-1 block">41,400,000 Kg</span>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 2: POSICIONAMIENTO GLOBAL -->
+            <section class="bg-card py-20 px-6 border-y border-gray-800">
+                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+                    <div class="lg:col-span-5 space-y-4 reveal">
+                        <span class="text-xs font-semibold tracking-widest text-primary uppercase">Contexto del Mercado Global</span>
+                        <h2 class="text-3xl font-serif text-white">Estadísticas de Exportadores Líderes</h2>
+                        <p class="text-xs text-gray-400 leading-relaxed font-light">
+                            Venezuela cuenta con un potencial latente de exportación masivo. <b class="text-white">Grano a Grano</b> se sitúa a la vanguardia para recuperar el rol histórico del café de origen venezolano.
+                        </p>
+                        <div class="p-4 bg-dark/60 border border-gray-800 rounded-lg">
+                            <div class="flex justify-between items-center text-xs">
+                                <span class="text-white font-medium">Capacidad de Exportación Grano a Grano:</span>
+                                <span class="text-primary font-bold font-serif">900,000 QQ</span>
+                            </div>
+                            <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
+                                <div class="bg-primary h-full rounded-full" style="width: 75%"></div>
+                            </div>
+                            <span class="text-[10px] text-gray-500 block mt-1 font-light text-right">Equivalente a 41,400,000 Kg de capacidad instalada.</span>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-7 reveal">
+                        <div class="bg-dark border border-gray-800 rounded-xl p-6 relative overflow-hidden">
+                            <img src="https://images.unsplash.com/photo-1523712995608-8d8a62ebd950?auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="Mapa Mundial">
+                            <div class="relative z-10">
+                                <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-4 font-semibold">Ranking de Principales Exportadores</span>
+                                <div class="space-y-3 font-sans text-xs">
+                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                                        <span class="text-gray-400"><b class="text-white mr-2">01</b> Brasil</span>
+                                        <span class="text-gray-500 font-serif text-xs">Líder Global</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                                        <span class="text-gray-400"><b class="text-white mr-2">02</b> Vietnam</span>
+                                        <span class="text-gray-500">Líder de Mercado N.º 2</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
+                                        <span class="text-gray-400"><b class="text-white mr-2">03</b> Colombia</span>
+                                        <span class="text-gray-500">Competidor Andino</span>
+                                    </div>
+                                    <div class="flex justify-between items-center pt-2 text-primary font-medium">
+                                        <span class="flex items-center gap-2">
+                                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
+                                            Destacado: <b class="text-white ml-1">Venezuela (Origen Grano a Grano)</b>
+                                        </span>
+                                        <span class="bg-primary/10 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Potencial Sin Tocar</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 3: INFOGRAFÍA 12 PASOS -->
+            <section class="max-w-7xl mx-auto px-6 py-20">
+                <div class="text-center mb-16 reveal">
+                    <span class="text-xs font-semibold tracking-widest text-primary uppercase">De la Cosecha al Almacén</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">El Proceso de Nuestro Café: Flujo Técnico</h2>
+                </div>
+
+                <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
+                    <!-- Step Cards -->
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">01</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">COSECHA</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Recolección artesanal eligiendo exclusivamente frutos maduros.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">02</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">PRE-LAVADO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Tanques técnicos para descartar frutos defectuosos.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">03</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">LAVADO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Flotación hidrodinámica para separar almendras menos densas.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">04</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">PULPADO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Extracción de pulpa con precisión mecánica automatizada.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">05</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">FERMENTACIÓN</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Fermentación bajo estrictos parámetros de control.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">06</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">SECADO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Secado solar o en camas africanas técnicas.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">07</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">LIMPIEZA</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Separación meticulosa de pergaminos y residuos.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">08</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">PULIDO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Pulido completo para estandarización visual.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">09</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">DESPIEDRE</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Filtro neumático de seguridad para impurezas pesadas.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">10</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">SEP. GRAVEDAD</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Separación por densidad de fracciones.</p>
+                    </div>
+                    <div class="bg-card p-5 rounded-xl border border-gray-800 hover:border-primary/40 transition-all group reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">11</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">CLASIF. TAMAÑO</h4>
+                        <p class="text-gray-500 text-[11px] leading-relaxed">Clasificación por tamaño mediante mallas técnicas.</p>
+                    </div>
+                    <div class="bg-gradient-to-br from-primary/20 to-card p-5 rounded-xl border border-primary/40 reveal">
+                        <div class="text-primary font-serif text-xl font-bold mb-2">12</div>
+                        <h4 class="text-white text-sm font-semibold mb-1">ALMACENAMIENTO</h4>
+                        <p class="text-gray-300 text-[11px] leading-relaxed">Almacenamiento seguro 60-90 días para estabilización.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- SECCIÓN 4: REQUERIMIENTOS DE EXPORTACIÓN -->
+            <section class="bg-card py-20 px-6 border-t border-gray-800">
+                <div class="max-w-7xl mx-auto">
+                    <div class="text-center mb-16 reveal">
+                        <span class="text-xs font-semibold tracking-widest text-primary uppercase">Requisitos de Exportación · Normativa CVC N° 025/2021</span>
+                        <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Procedimientos de Exportación</h2>
+                    </div>
+
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
+                        <!-- Lotes de Grandes Volúmenes -->
+                        <div class="bg-dark border border-gray-800 rounded-xl overflow-hidden reveal">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Contenedores de Envío" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                                <div class="absolute top-4 left-4 bg-orange-950/80 text-orange-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-orange-900/30">
+                                    Grandes Volúmenes · Embarques en Contenedor
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-xl text-white mb-2">Embarques Marítimos Consolidados</h3>
+                                <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                                    Logística a escala industrial para asociaciones de productores, plantas beneficiadoras e industria de torrefacción homologada.
+                                </p>
+                                <ul class="text-xs text-gray-400 space-y-2 font-light">
+                                    <li class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                        <b class="text-white">Café Verde:</b> Exportación en sacos estándar de yute.
+                                    </li>
+                                    <li class="flex items-center gap-2">
+                                        <svg class="w-4 h-4 text-primary" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                                        <b class="text-white">Café Procesado:</b> Café tostado en grano y/o molido.
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+
+                        <!-- Lotes de Pequeños Volúmenes -->
+                        <div class="bg-dark border border-gray-800 rounded-xl overflow-hidden reveal" style="transition-delay: 0.2s">
+                            <div class="h-48 overflow-hidden relative">
+                                <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80" alt="Sacos de Café" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                                <div class="absolute top-4 left-4 bg-emerald-900/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-emerald-900/30">
+                                    Pequeños Volúmenes · Hasta 60 Kg Netos
+                                </div>
+                            </div>
+                            <div class="p-6">
+                                <h3 class="font-serif text-xl text-white mb-2">Directrices para Micro-Exportación</h3>
+                                <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
+                                    Permisos simplificados para envíos individuales inferiores a un contenedor, ideales para muestras comerciales y cafés exóticos.
+                                </p>
+
+                                <div class="space-y-3">
+                                    <div class="flex justify-between items-center p-2 bg-card rounded border border-gray-800 text-xs">
+                                        <span class="text-gray-300 font-medium flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-green-500 rounded-full"></span> Café Verde Estándar
+                                        </span>
+                                        <span class="bg-dark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-card rounded border border-gray-800 text-xs">
+                                        <span class="text-gray-300 font-medium flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-amber-800 rounded-full"></span> Café Especial Certificado
+                                        </span>
+                                        <span class="bg-dark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
+                                    </div>
+                                    <div class="flex justify-between items-center p-2 bg-card rounded border border-gray-800 text-xs">
+                                        <span class="text-gray-300 font-medium flex items-center gap-2">
+                                            <span class="w-2 h-2 bg-emerald-600 rounded-full"></span> Café Orgánico (INSAI)
+                                        </span>
+                                        <span class="bg-dark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Resumen rápido (original) -->
+            <section class="py-20 px-6 bg-dark border-y border-white/5">
+                <div class="max-w-6xl mx-auto text-center">
+                    <div class="grid grid-cols-2 md:grid-cols-4 gap-6 reveal">
+                        <div>
+                            <span class="text-4xl font-serif text-primary">✦</span>
+                            <h4 class="text-white font-semibold text-sm uppercase tracking-widest mt-2">Origen</h4>
+                            <p class="text-xs text-gray-400 mt-1">Café de altura venezolano</p>
+                        </div>
+                        <div>
+                            <span class="text-4xl font-serif text-primary">✦</span>
+                            <h4 class="text-white font-semibold text-sm uppercase tracking-widest mt-2">Proceso</h4>
+                            <p class="text-xs text-gray-400 mt-1">Trazabilidad y control</p>
+                        </div>
+                        <div>
+                            <span class="text-4xl font-serif text-primary">✦</span>
+                            <h4 class="text-white font-semibold text-sm uppercase tracking-widest mt-2">Calidad</h4>
+                            <p class="text-xs text-gray-400 mt-1">Estándares internacionales</p>
+                        </div>
+                        <div>
+                            <span class="text-4xl font-serif text-primary">✦</span>
+                            <h4 class="text-white font-semibold text-sm uppercase tracking-widest mt-2">Mercado</h4>
+                            <p class="text-xs text-gray-400 mt-1">Exportación global</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- PÁGINA: HISTORIA -->
+        <!-- ========================================================== -->
+        <div id="page-historia" class="page">
+            <section class="py-20 px-6 bg-card/30 min-h-screen">
+                <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
+                    <div class="reveal">
+                        <span class="text-xs uppercase tracking-widest text-primary font-semibold">Sobre Nosotros</span>
+                        <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Una gestión integrada de la cadena de valor</h2>
+                        <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                            Operamos cada eslabón de la cadena bajo criterios técnicos claros, procesos estandarizados y una cultura de cumplimiento que garantiza consistencia, trazabilidad y confiabilidad a escala.
+                        </p>
+                        <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                            Desde la selección de fincas hasta la entrega final, aplicamos mejores prácticas internacionales y contamos con certificaciones que respaldan nuestro compromiso con la calidad y la sostenibilidad.
+                        </p>
+                        <div class="mt-6 flex flex-wrap gap-6 text-sm">
+                            <div>
+                                <span class="block text-2xl font-serif text-primary">2018</span>
+                                <span class="text-gray-400 text-xs uppercase tracking-wider">Operación continua</span>
+                            </div>
+                            <div>
+                                <span class="block text-2xl font-serif text-primary">✓</span>
+                                <span class="text-gray-400 text-xs uppercase tracking-wider">Certificaciones Norven · Kosher</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="reveal">
+                        <img src="https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg" alt="Café" class="rounded-xl shadow-2xl w-full object-cover max-h-96" />
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- PÁGINA: ROASTED COFFEE (con submenú de productos) -->
+        <!-- ========================================================== -->
+        <div id="page-roasted" class="page">
+            <section class="py-16 px-6 bg-dark min-h-screen">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Encabezado y submenú -->
+                    <div class="text-center mb-12">
+                        <span class="text-xs uppercase tracking-widest text-primary font-semibold">Nuestros Productos</span>
+                        <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Roasted Coffee &amp; Roasting Solutions</h2>
+                        <p class="text-sm text-gray-400 mt-4 max-w-2xl mx-auto">
+                            Selecciona una categoría para conocer más sobre nuestras líneas de café tostado y servicios de torrefacción.
+                        </p>
+                    </div>
+
+                    <!-- Submenú de productos -->
+                    <div class="product-submenu flex flex-wrap justify-center gap-2 md:gap-6 border-b border-white/10 pb-4 mb-10 text-xs uppercase tracking-widest font-semibold">
+                        <a href="#" onclick="showProduct('cafe-grano-a-grano')" class="text-primary border-b-2 border-primary pb-2" data-product="cafe-grano-a-grano">Café Grano a Grano</a>
+                        <a href="#" onclick="showProduct('edicion-gourmet')" class="text-gray-300 hover:text-white transition pb-2" data-product="edicion-gourmet">Edición Gourmet</a>
+                        <a href="#" onclick="showProduct('edicion-especialidad')" class="text-gray-300 hover:text-white transition pb-2" data-product="edicion-especialidad">Edición de Especialidad</a>
+                        <a href="#" onclick="showProduct('roasting-solutions')" class="text-gray-300 hover:text-white transition pb-2" data-product="roasting-solutions">Roasting Solutions</a>
+                        <a href="#" onclick="showProduct('barras-cafe')" class="text-gray-300 hover:text-white transition pb-2" data-product="barras-cafe">Barras de Café</a>
+                    </div>
+
+                    <!-- Contenido de producto -->
+                    <div id="product-content" class="bg-card/50 rounded-xl border border-white/5 p-6 md:p-10">
+                        <!-- Café Grano a Grano -->
+                        <div id="product-cafe-grano-a-grano" class="product-detail">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-serif text-white">Café Grano a Grano</h3>
+                                    <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                        Nuestra línea insignia, un café de origen 100% venezolano, cultivado en las alturas de los Andes. Seleccionamos cuidadosamente los mejores granos para ofrecer una taza equilibrada, con cuerpo sedoso y notas a chocolate y frutos secos.
+                                    </p>
+                                    <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                                        <li class="flex items-start gap-2">✓ <span><strong>Perfil:</strong> Acidez media, dulzor natural, cuerpo cremoso.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Métodos:</strong> Ideal para filtro, prensa francesa y espresso.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Certificaciones:</strong> Norven, Kosher, trazabilidad total.</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-4">Disponible en presentaciones de 250g, 500g y 1kg.</p>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Café Grano a Grano" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                            </div>
+                        </div>
+
+                        <!-- Edición Gourmet -->
+                        <div id="product-edicion-gourmet" class="product-detail hidden">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-serif text-white">Edición Gourmet</h3>
+                                    <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                        Una selección exclusiva de lotes de alta puntuación, con perfiles sensoriales complejos y refinados. Cada partida es catada y calificada por expertos para garantizar una experiencia única.
+                                    </p>
+                                    <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                                        <li class="flex items-start gap-2">✓ <span><strong>Notas:</strong> Cítricas, florales, caramelo y miel.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Altura:</strong> 1.600 – 2.000 m s.n.m.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Proceso:</strong> Lavado, honey y natural.</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-4">Ediciones limitadas con empaque numerado.</p>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Edición Gourmet" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                            </div>
+                        </div>
+
+                        <!-- Edición de Especialidad -->
+                        <div id="product-edicion-especialidad" class="product-detail hidden">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-serif text-white">Edición de Especialidad</h3>
+                                    <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                        Cafés de origen único, con puntajes SCA superiores a 84 puntos. Son micro-lotes que destacan por su excepcional claridad de taza y su historia única. Ideal para baristas y amantes del café de especialidad.
+                                    </p>
+                                    <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                                        <li class="flex items-start gap-2">✓ <span><strong>Variedades:</strong> Caturra, Colombia, Criollo.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Certificación:</strong> Orgánico INSAI.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Tostado:</strong> Ligero a medio para resaltar notas frutales.</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-4">Disponible en sacos de 1 kg para profesionales.</p>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Edición de Especialidad" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                            </div>
+                        </div>
+
+                        <!-- Roasting Solutions -->
+                        <div id="product-roasting-solutions" class="product-detail hidden">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-serif text-white">Roasting Solutions</h3>
+                                    <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                        Servicio integral de torrefacción para marcas, restaurantes y cadenas de café. Desarrollamos perfiles de tostado personalizados, garantizando consistencia lote a lote.
+                                    </p>
+                                    <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                                        <li class="flex items-start gap-2">✓ <span><strong>Capacidad:</strong> Hasta 5.000 kg/mes.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Asesoría:</strong> Selección de origen y blend.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Envase:</strong> Empaque al vacío o en bolsas con válvula.</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-4">Contamos con planta propia y equipo técnico especializado.</p>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80" alt="Roasting Solutions" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                            </div>
+                        </div>
+
+                        <!-- Barras de Café -->
+                        <div id="product-barras-cafe" class="product-detail hidden">
+                            <div class="grid md:grid-cols-2 gap-8 items-center">
+                                <div>
+                                    <h3 class="text-2xl font-serif text-white">Barras de Café</h3>
+                                    <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                        Equipamos barras de café para hoteles, oficinas y espacios comerciales. Suministramos café en grano o molido, máquinas y asesoría para mantener la calidad del servicio.
+                                    </p>
+                                    <ul class="mt-4 space-y-2 text-sm text-gray-300">
+                                        <li class="flex items-start gap-2">✓ <span><strong>Modalidad:</strong> Alquiler o compra de equipos.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Mantenimiento:</strong> Servicio técnico preventivo.</span></li>
+                                        <li class="flex items-start gap-2">✓ <span><strong>Formación:</strong> Capacitación para el personal.</span></li>
+                                    </ul>
+                                    <p class="text-xs text-gray-400 mt-4">Adaptamos la solución a tus necesidades de consumo.</p>
+                                </div>
+                                <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Barras de Café" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- PÁGINA: GREEN COFFEE TRADING -->
+        <!-- ========================================================== -->
+        <div id="page-green" class="page">
+            <section class="py-20 px-6 bg-card/30 min-h-screen">
+                <div class="max-w-6xl mx-auto">
+                    <div class="text-center mb-16 reveal">
+                        <span class="text-xs uppercase tracking-widest text-primary font-semibold">Comercio de Café Verde</span>
+                        <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Green Coffee Trading</h2>
+                        <p class="text-sm text-gray-400 mt-4 max-w-2xl mx-auto">
+                            Exportamos café verde venezolano de alta calidad, con total trazabilidad y cumplimiento de estándares internacionales.
+                        </p>
+                    </div>
+                    <div class="grid md:grid-cols-2 gap-10 items-center">
+                        <div>
+                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Green Coffee" class="rounded-xl shadow-2xl w-full object-cover max-h-80" />
+                        </div>
+                        <div>
+                            <h3 class="text-2xl font-serif text-white">Café de origen controlado</h3>
+                            <p class="text-sm text-gray-300 mt-4 leading-relaxed">
+                                Operamos directamente con productores asociados, asegurando prácticas agrícolas sostenibles y una cadena de suministro transparente. Nuestro café verde es seleccionado por su calidad física y sensorial, y cumple con los requisitos de los mercados más exigentes.
+                            </p>
+                            <ul class="mt-6 space-y-2 text-sm text-gray-300">
+                                <li class="flex items-start gap-2">✓ <span>Certificado de origen y calidad.</span></li>
+                                <li class="flex items-start gap-2">✓ <span>Análisis de taza y humedad.</span></li>
+                                <li class="flex items-start gap-2">✓ <span>Empaque en sacos de yute o GrainPro.</span></li>
+                                <li class="flex items-start gap-2">✓ <span>Logística internacional puerta a puerta.</span></li>
+                            </ul>
+                            <p class="text-xs text-gray-400 mt-4">Volumen mínimo de exportación: 1 contenedor (aprox. 275 QQ).</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </div>
+
+        <!-- ========================================================== -->
+        <!-- PÁGINA: CONTACTO -->
+        <!-- ========================================================== -->
+        <div id="page-contacto" class="page">
+            <section class="py-20 px-6 bg-dark min-h-screen">
+                <div class="max-w-4xl mx-auto text-center reveal">
+                    <span class="text-xs uppercase tracking-widest text-primary font-semibold">Contacto</span>
+                    <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Hablemos de café</h2>
+                    <p class="text-sm text-gray-400 mt-4 max-w-xl mx-auto">
+                        Si buscas calidad, trazabilidad y un socio confiable en la cadena de valor del café venezolano, estamos listos para colaborar.
+                    </p>
+
+                    <form class="mt-10 grid grid-cols-1 md:grid-cols-2 gap-4 text-left">
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Nombre</label>
+                            <input type="text" class="w-full bg-card border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-primary transition" placeholder="Tu nombre" />
+                        </div>
+                        <div>
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Correo</label>
+                            <input type="email" class="w-full bg-card border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-primary transition" placeholder="tu@correo.com" />
+                        </div>
+                        <div class="md:col-span-2">
+                            <label class="block text-xs uppercase tracking-widest text-gray-400 mb-1">Mensaje</label>
+                            <textarea rows="4" class="w-full bg-card border border-white/10 rounded px-4 py-3 text-white focus:outline-none focus:border-primary transition" placeholder="Cuéntanos sobre tu proyecto..."></textarea>
+                        </div>
+                        <div class="md:col-span-2">
+                            <button type="submit" class="w-full bg-primary text-dark font-semibold text-xs py-3 rounded uppercase tracking-widest hover:bg-opacity-80 transition">
+                                Enviar mensaje
+                            </button>
+                        </div>
+                    </form>
+
+                    <div class="mt-12 text-xs text-gray-500">
+                        <p>📍 Venezuela | 🌐 cafegranoagrano.com</p>
+                        <p class="mt-1">Respaldados por quienes buscan el mejor origen</p>
+                    </div>
+                </div>
+            </section>
         </div>
     </div>
 
-    <main id="tab-home" class="tab-content active flex-grow">
-    
-   <main id="tab-home" class="tab-content active flex-grow">
-    <section class="relative h-screen w-full flex items-center justify-center overflow-hidden">
-        
-        <!-- Video de fondo -->
-        <video autoplay loop muted playsinline class="absolute inset-0 w-full h-full object-cover z-0">
-            <source src="video%20coffe/fondo%20inicio.mp4" type="video/mp4">
-        </video>     
-
-        <!-- Filtro oscuro -->
-        <div class="absolute inset-0 bg-black/60 z-10"></div>
-
-        <!-- Contenido -->
-        <div class="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <h1 class="text-4xl md:text-7xl font-serif text-white">
-                REPORTE DE EXPORTACIÓN <br>
-                <span class="italic text-yellow-500">CAFÉ VENEZOLANO</span>
-            </h1>
-        </div>
-    </section>
-</main>
-
-        <!-- Filtro oscuro (Capa de lectura) -->
-        <div class="absolute inset-0 bg-coffeeDark/70 z-10"></div>
-
-        <!-- Contenido Central -->
-        <div class="relative z-20 text-center max-w-4xl mx-auto px-6">
-            <span class="text-[10px] font-semibold tracking-widest text-coffeeGold uppercase bg-coffeeDark/40 border border-coffeeGold/20 px-4 py-2 rounded-full backdrop-blur-sm animate-fade-in-up">
-                Corporación Venezolana del Café · CVC Norm N° 025/2021
-            </span>
-            <h1 class="text-4xl md:text-7xl font-serif text-white mt-8 mb-6 leading-tight tracking-wide animate-fade-in-up" style="animation-delay: 0.2s">
-                REPORTE DE EXPORTACIÓN <br><span class="italic text-coffeeGold font-normal">CAFÉ VENEZOLANO</span>
-            </h1>
-            <p class="text-sm md:text-base text-gray-300 max-w-xl mx-auto mb-10 font-light leading-relaxed animate-fade-in-up" style="animation-delay: 0.4s">
-                Plataforma integral de comercialización y logística agroindustrial. Conectamos la alta montaña andina con los mercados globales más exigentes.
-            </p>
-            <div class="flex flex-col sm:flex-row justify-center gap-4 animate-fade-in-up" style="animation-delay: 0.6s">
-                <button onclick="switchTab('coffee')" class="bg-coffeeGold text-coffeeDark font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-yellow-600 transition shadow-lg transform hover:-translate-y-1">Ver Catálogo</button>
-                <button onclick="switchTab('logistics')" class="border border-white/30 text-white font-semibold text-xs px-10 py-4 rounded uppercase tracking-widest hover:bg-white/10 transition backdrop-blur-sm transform hover:-translate-y-1">Rutas de Exportación</button>
+    <!-- ========== FOOTER ========== -->
+    <footer class="border-t border-white/5 py-8 px-6 bg-dark/80">
+        <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
+            <div class="flex items-center gap-3">
+                <img src="https://cafegranoagrano.com/wp-content/uploads/2026/02/isotipo-mostaza.svg" alt="Grano a Grano" class="h-6 w-auto" />
+                <span>© 2026 Grano a Grano Coffee Holdings</span>
             </div>
-        </div>
-    </section>
-
-    <!-- AQUÍ CONTINÚAN TUS OTRAS SECCIONES... -->
-</main>
-        <!-- SECCIÓN 1: DASHBOARD DE PRODUCCIÓN -->
-        <section class="max-w-7xl mx-auto px-6 py-20">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Panel de Producción</span>
-                <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Estadísticas de Producción Nacional</h2>
+            <div class="flex gap-6">
+                <a href="#" class="hover:text-primary transition">Aviso legal</a>
+                <a href="#" class="hover:text-primary transition">Política de privacidad</a>
             </div>
-            
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
-                <!-- Card Stat 1 -->
-                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal">
-                    <div class="text-coffeeGold mb-3">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7"></path></svg>
-                    </div>
-                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">220,000</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Hectáreas Cultivadas</span>
-                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Superficie total activa en cultivo cafetalero.</p>
-                </div>
-                <!-- Card Stat 2 -->
-                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.1s">
-                    <div class="text-coffeeGold mb-3">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3"></path></svg>
-                    </div>
-                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">15</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">QQ por Hectárea</span>
-                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Rendimiento técnico promedio cosechado.</p>
-                </div>
-                <!-- Card Stat 3 -->
-                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.2s">
-                    <div class="text-coffeeGold mb-3">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                    </div>
-                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">3,300,000</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Total Quintales</span>
-                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Volumen de producción nacional computado.</p>
-                </div>
-                <!-- Card Stat 4 -->
-                <div class="bg-coffeeCard p-6 rounded-xl border border-gray-900 hover:border-coffeeGold/30 transition-all duration-500 transform hover:-translate-y-2 reveal" style="transition-delay: 0.3s">
-                    <div class="text-coffeeGold mb-3">
-                        <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"></path></svg>
-                    </div>
-                    <span class="text-3xl md:text-4xl font-serif text-white font-bold block">46 Kg</span>
-                    <span class="text-[10px] uppercase tracking-widest text-gray-500 font-medium block mt-1">Conversión</span>
-                    <p class="text-[11px] text-gray-400 mt-3 font-light border-t border-gray-800 pt-3">Equivalencia métrica estándar por quintal.</p>
-                </div>
-            </div>
-
-            <!-- Business Volume Highlight -->
-            <div class="bg-gradient-to-r from-coffeeSlate to-coffeeCard border border-coffeeGold/20 rounded-xl p-8 flex flex-col lg:flex-row justify-between items-center gap-8 reveal overflow-hidden relative">
-                <div class="absolute -right-10 -bottom-10 w-40 h-40 bg-coffeeGold/10 rounded-full blur-3xl"></div>
-                <div class="relative z-10">
-                    <span class="text-[10px] uppercase tracking-widest text-coffeeGold font-bold block">Capacidad Total de Exportación y Volumen Comercial</span>
-                    <h3 class="text-4xl md:text-5xl font-serif text-white font-semibold mt-2">$140,760,000 <span class="text-lg">USD</span></h3>
-                    <p class="text-xs text-gray-400 font-light mt-2">Ingresos anuales estimados por exportación agroindustrial.</p>
-                </div>
-                <div class="bg-coffeeDark px-8 py-5 rounded-lg border border-gray-800 text-center relative z-10">
-                    <span class="text-xs text-gray-500 block uppercase tracking-wider">Masa Neta Exportable</span>
-                    <span class="text-2xl font-serif text-coffeeGold font-semibold mt-1 block">41,400,000 Kg</span>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 2: POSICIONAMIENTO GLOBAL -->
-        <section class="bg-coffeeCard py-20 px-6 border-y border-gray-900">
-            <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                
-                <div class="lg:col-span-5 space-y-4 reveal">
-                    <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Contexto del Mercado Global</span>
-                    <h2 class="text-3xl font-serif text-white">Estadísticas de Exportadores Líderes</h2>
-                    <p class="text-xs text-gray-400 leading-relaxed font-light">
-                        Venezuela cuenta con un potencial latente de exportación masivo. <b class="text-white">Belgim C.A.</b> se sitúa a la vanguardia para recuperar el rol histórico del café de origen venezolano.
-                    </p>
-                    <div class="p-4 bg-coffeeDark/60 border border-gray-800 rounded-lg">
-                        <div class="flex justify-between items-center text-xs">
-                            <span class="text-white font-medium">Capacidad de Exportación Belgim:</span>
-                            <span class="text-coffeeGold font-bold font-serif">900,000 QQ</span>
-                        </div>
-                        <div class="w-full bg-gray-900 h-1.5 rounded-full mt-2 overflow-hidden">
-                            <div class="bg-coffeeGold h-full rounded-full" style="width: 75%"></div>
-                        </div>
-                        <span class="text-[10px] text-gray-500 block mt-1 font-light text-right">Equivalente a 41,400,000 Kg de capacidad instalada.</span>
-                    </div>
-                </div>
-
-                <div class="lg:col-span-7 reveal">
-                    <div class="bg-coffeeDark border border-gray-800 rounded-xl p-6 relative overflow-hidden">
-                        <img src="https://images.unsplash.com/photo-1523712995608-8d8a62ebd950?auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="Mapa Mundial">
-                        <div class="relative z-10">
-                            <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-4 font-semibold">Ranking de Principales Exportadores</span>
-                            <div class="space-y-3 font-sans text-xs">
-                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
-                                    <span class="text-gray-400"><b class="text-white mr-2">01</b> Brasil</span>
-                                    <span class="text-gray-500 font-serif text-xs">Líder Global</span>
-                                </div>
-                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
-                                    <span class="text-gray-400"><b class="text-white mr-2">02</b> Vietnam</span>
-                                    <span class="text-gray-500">Líder de Mercado N.º 2</span>
-                                </div>
-                                <div class="flex justify-between items-center pb-2 border-b border-gray-900">
-                                    <span class="text-gray-400"><b class="text-white mr-2">03</b> Colombia</span>
-                                    <span class="text-gray-500">Competidor Andino</span>
-                                </div>
-                                <div class="flex justify-between items-center pt-2 text-coffeeGold font-medium">
-                                    <span class="flex items-center gap-2">
-                                        <svg class="w-4 h-4 text-coffeeGold" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                        Destacado: <b class="text-white ml-1">Venezuela (Origen Belgim)</b>
-                                    </span>
-                                    <span class="bg-coffeeGold/10 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Potencial Sin Tocar</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- SECCIÓN 3: INFOGRAFÍA 12 PASOS -->
-        <section class="max-w-7xl mx-auto px-6 py-20">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">De la Cosecha al Almacén</span>
-                <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">El Proceso de Nuestro Café: Flujo Técnico</h2>
-            </div>
-
-            <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-                <!-- Step Cards -->
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">01</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">COSECHA</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Recolección artesanal eligiendo exclusivamente frutos maduros.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">02</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">PRE-LAVADO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Tanques técnicos para descartar frutos defectuosos.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">03</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">LAVADO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Flotación hidrodinámica para separar almendras menos densas.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">04</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">PULPADO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Extracción de pulpa con precisión mecánica automatizada.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">05</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">FERMENTACIÓN</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Fermentación bajo estrictos parámetros de control.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">06</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">SECADO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Secado solar o en camas africanas técnicas.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">07</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">LIMPIEZA</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Separación meticulosa de pergaminos y residuos.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">08</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">PULIDO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Pulido completo para estandarización visual.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">09</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">DESPIEDRE</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Filtro neumático de seguridad para impurezas pesadas.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">10</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">SEP. GRAVEDAD</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Separación por densidad de fracciones.</p>
-                </div>
-                <div class="bg-coffeeCard p-5 rounded-xl border border-gray-900 hover:border-coffeeGold/40 transition-all group reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">11</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">CLASIF. TAMAÑO</h4>
-                    <p class="text-gray-500 text-[11px] leading-relaxed">Clasificación por tamaño mediante mallas técnicas.</p>
-                </div>
-                <div class="bg-gradient-to-br from-coffeeGreen/20 to-coffeeCard p-5 rounded-xl border border-coffeeGold/40 reveal">
-                    <div class="text-coffeeGold font-serif text-xl font-bold mb-2">12</div>
-                    <h4 class="text-white text-sm font-semibold mb-1">ALMACENAMIENTO</h4>
-                    <p class="text-gray-300 text-[11px] leading-relaxed">Almacenamiento seguro 60-90 días para estabilización.</p>
-                </div>
-            </div>
-        </section>
-
-        <!-- SECCIÓN 4: REQUERIMIENTOS DE EXPORTACIÓN -->
-        <section class="bg-coffeeCard py-20 px-6 border-t border-gray-900">
-            <div class="max-w-7xl mx-auto">
-                <div class="text-center mb-16 reveal">
-                    <span class="text-xs font-semibold tracking-widest text-coffeeGold uppercase">Requisitos de Exportación · Normativa CVC N° 025/2021</span>
-                    <h2 class="text-3xl md:text-4xl font-serif text-white mt-2">Procedimientos de Exportación</h2>
-                </div>
-
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
-                    
-                    <!-- Lotes de Grandes Volúmenes -->
-                    <div class="bg-coffeeDark border border-gray-800 rounded-xl overflow-hidden reveal">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Contenedores de Envío" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-orange-950/80 text-orange-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-orange-900/30">
-                                Grandes Volúmenes · Embarques en Contenedor
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-serif text-xl text-white mb-2">Embarques Marítimos Consolidados</h3>
-                            <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
-                                Logística a escala industrial para asociaciones de productores, plantas beneficiadoras e industria de torrefacción homologada.
-                            </p>
-                            <ul class="text-xs text-gray-400 space-y-2 font-light">
-                                <li class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-coffeeGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <b class="text-white">Café Verde:</b> Exportación en sacos estándar de yute.
-                                </li>
-                                <li class="flex items-center gap-2">
-                                    <svg class="w-4 h-4 text-coffeeGold" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
-                                    <b class="text-white">Café Procesado:</b> Café tostado en grano y/o molido.
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-
-                    <!-- Lotes de Pequeños Volúmenes -->
-                    <div class="bg-coffeeDark border border-gray-800 rounded-xl overflow-hidden reveal" style="transition-delay: 0.2s">
-                        <div class="h-48 overflow-hidden relative">
-                            <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80" alt="Sacos de Café" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
-                            <div class="absolute top-4 left-4 bg-coffeeGreen/80 text-green-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-coffeeGreen/30">
-                                Pequeños Volúmenes · Hasta 60 Kg Netos
-                            </div>
-                        </div>
-                        <div class="p-6">
-                            <h3 class="font-serif text-xl text-white mb-2">Directrices para Micro-Exportación</h3>
-                            <p class="text-xs text-gray-400 font-light leading-relaxed mb-4">
-                                Permisos simplificados para envíos individuales inferiores a un contenedor, ideales para muestras comerciales y cafés exóticos.
-                            </p>
-                            
-                            <div class="space-y-3">
-                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
-                                    <span class="text-gray-300 font-medium flex items-center gap-2">
-                                        <span class="w-2 h-2 bg-green-500 rounded-full"></span> Café Verde Estándar
-                                    </span>
-                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
-                                    <span class="text-gray-300 font-medium flex items-center gap-2">
-                                        <span class="w-2 h-2 bg-amber-800 rounded-full"></span> Café Especial Certificado
-                                    </span>
-                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
-                                </div>
-                                <div class="flex justify-between items-center p-2 bg-coffeeCard rounded border border-gray-900 text-xs">
-                                    <span class="text-gray-300 font-medium flex items-center gap-2">
-                                        <span class="w-2 h-2 bg-emerald-600 rounded-full"></span> Café Orgánico (INSAI)
-                                    </span>
-                                    <span class="bg-coffeeDark px-2 py-0.5 rounded text-white text-[10px] font-bold">Hasta 60 kg</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- =================================================== -->
-    <!-- PESTAÑA: ABOUT (EMPRESA)                            -->
-    <!-- =================================================== -->
-    <main id="tab-about" class="tab-content flex-grow">
-        <section class="relative py-24 px-6 overflow-hidden">
-            <div class="absolute inset-0 opacity-10">
-                <img src="https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?auto=format&fit=crop&w=2400&q=80" class="w-full h-full object-cover">
-            </div>
-
-            <div class="max-w-6xl mx-auto relative z-10">
-                <div class="text-center mb-20 reveal">
-                    <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Perfil Corporativo</span>
-                    <h2 class="text-4xl md:text-5xl font-serif text-white mt-4">Rescatando el Legado Cafetalero</h2>
-                    <p class="text-gray-400 text-sm mt-4 max-w-2xl mx-auto font-light leading-relaxed">
-                        Belgim C.A. nace en el corazón de los Andes venezolanos con el propósito de revivir y proyectar la riqueza cafetalera nacional hacia el mundo, fusionando tradición, innovación y responsabilidad social.
-                    </p>
-                </div>
-
-                <!-- MISIÓN -->
-                <div class="flex flex-col lg:flex-row gap-12 items-center mb-24 reveal">
-                    <div class="lg:w-1/2">
-                        <div class="relative rounded-xl overflow-hidden border border-gray-800 shadow-2xl group">
-                            <img src="https://images.unsplash.com/photo-1447933601403-0c6688de566e?auto=format&fit=crop&w=800&q=80" alt="Agricultor de Café" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-coffeeDark via-transparent to-transparent"></div>
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2">
-                        <h3 class="text-2xl font-serif text-white mb-4 border-l-4 border-coffeeGold pl-4">Nuestra Misión</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-4 font-light">
-                            Cautivar al mercado global con el café Premium de Venezuela, integrando tecnología de punta y un modelo de comercio justo que dignifique la labor del caficultor andino. Nos comprometemos a ser el puente logístico y comercial que conecte la alta montaña con los mercados internacionales más exigentes.
-                        </p>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light">
-                            Trabajamos bajo estrictos estándares de calidad, asegurando la trazabilidad desde la finca hasta el puerto, garantizando que cada grano exportado cuente una historia de esfuerzo, calidad y autenticidad venezolana.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- VISIÓN -->
-                <div class="flex flex-col lg:flex-row-reverse gap-12 items-center mb-20 reveal" style="transition-delay: 0.2s">
-                    <div class="lg:w-1/2">
-                        <div class="relative rounded-xl overflow-hidden border border-gray-800 shadow-2xl group">
-                            <img src="https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?auto=format&fit=crop&w=800&q=80" alt="Café Global" class="w-full h-80 object-cover transition-transform duration-700 group-hover:scale-105">
-                            <div class="absolute inset-0 bg-gradient-to-t from-coffeeDark via-transparent to-transparent"></div>
-                        </div>
-                    </div>
-                    <div class="lg:w-1/2">
-                        <h3 class="text-2xl font-serif text-white mb-4 border-l-4 border-coffeeGold pl-4">Nuestra Visión</h3>
-                        <p class="text-sm text-gray-400 leading-relaxed mb-4 font-light">
-                            Posicionar al café venezolano en el segmento de especialidad mundial, siendo referentes de calidad, trazabilidad y sostenibilidad ambiental para el año 2030. Aspiramos a que el origen "Venezuela" sea sinónimo de excelencia en las tazas más exclusivas del planeta.
-                        </p>
-                        <p class="text-sm text-gray-400 leading-relaxed font-light">
-                            Visualizamos una agroindustria próspera donde la tecnología, el respeto por el medio ambiente y el bienestar de las comunidades productoras sean los pilares del desarrollo económico sostenible de la región andina.
-                        </p>
-                    </div>
-                </div>
-
-                <!-- Stats Grid -->
-                <div class="bg-coffeeCard/50 backdrop-blur-sm border border-gray-800 rounded-xl p-8 grid grid-cols-2 md:grid-cols-4 gap-8 text-center reveal">
-                    <div>
-                        <span class="text-3xl font-serif text-coffeeGold block">24</span>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Asociaciones Aliadas</span>
-                    </div>
-                    <div>
-                        <span class="text-3xl font-serif text-coffeeGold block">120</span>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Hectáreas Propias</span>
-                    </div>
-                    <div>
-                        <span class="text-3xl font-serif text-coffeeGold block">2.5K</span>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">Productores</span>
-                    </div>
-                    <div>
-                        <span class="text-3xl font-serif text-coffeeGold block">900K</span>
-                        <span class="text-[10px] uppercase tracking-widest text-gray-500 block mt-1">QQ Capacidad</span>
-                    </div>
-                </div>
-            </div>
-        </section>
-    </main>
-
-    <!-- =================================================== -->
-    <!-- PESTAÑA: COFFEE (CATÁLOGO)                          -->
-    <!-- =================================================== -->
-    <main id="tab-coffee" class="tab-content flex-grow bg-coffeeSlate/20 py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Nuestro Portafolio</span>
-                <h2 class="text-4xl font-serif text-white mt-2">Variedades de Alta Taza</h2>
-                <p class="text-sm text-gray-400 mt-4 max-w-2xl mx-auto">Selección exclusiva de cultivares adaptados a las alturas de los Andes venezolanos.</p>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Product Card 1 -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Caturra" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-coffeeDark/80 text-coffeeGold text-[10px] px-3 py-1 rounded-full border border-coffeeGold/30">Premium</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-serif text-white mb-2">Caturra</h3>
-                        <p class="text-xs text-gray-400 mb-4">Dulzura pronunciada, acidez media y cuerpo sedoso. Ideal para goteo.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-coffeeGold font-serif text-lg">$48.00 <span class="text-xs text-gray-500">/ QQ</span></span>
-                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 2 -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal" style="transition-delay: 0.1s">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Colombia" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-coffeeGreen/80 text-white text-[10px] px-3 py-1 rounded-full">Orgánico</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-serif text-white mb-2">Colombia</h3>
-                        <p class="text-xs text-gray-400 mb-4">Perfil equilibrado con notas de cacao y frutos rojos. Alta resistencia.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-coffeeGold font-serif text-lg">$52.00 <span class="text-xs text-gray-500">/ QQ</span></span>
-                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
-                        </div>
-                    </div>
-                </div>
-                <!-- Product Card 3 -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-900 hover:border-coffeeGold/50 transition-all duration-500 group reveal" style="transition-delay: 0.2s">
-                    <div class="h-56 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Criollo" class="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110">
-                        <div class="absolute top-4 right-4 bg-orange-900/80 text-orange-300 text-[10px] px-3 py-1 rounded-full">Exclusivo</div>
-                    </div>
-                    <div class="p-6">
-                        <h3 class="text-xl font-serif text-white mb-2">Criollo</h3>
-                        <p class="text-xs text-gray-400 mb-4">Variedad autóctona de baja producción pero sabor excepcional.</p>
-                        <div class="flex justify-between items-center">
-                            <span class="text-coffeeGold font-serif text-lg">$65.00 <span class="text-xs text-gray-500">/ QQ</span></span>
-                            <button class="text-[10px] border border-coffeeGold text-coffeeGold px-4 py-2 rounded hover:bg-coffeeGold hover:text-coffeeDark transition">Solicitar</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- =================================================== -->
-    <!-- PESTAÑA: LOGISTICS (LOGÍSTICA)                      -->
-    <!-- =================================================== -->
-    <main id="tab-logistics" class="tab-content flex-grow py-20 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16 reveal">
-                <span class="text-xs tracking-widest text-coffeeGold uppercase font-semibold">Comercio Global</span>
-                <h2 class="text-4xl font-serif text-white mt-2">Rutas y Marco Legal</h2>
-            </div>
-
-            <!-- Timeline Visual con Imágenes -->
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-20">
-                <!-- Fase 1 con Imagen -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-800 reveal group">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?auto=format&fit=crop&w=800&q=80" alt="Documentos" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-coffeeCard to-transparent"></div>
-                    </div>
-                    <div class="p-6 relative -mt-10">
-                        <span class="bg-coffeeGold text-coffeeDark text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 01</span>
-                        <h4 class="text-white font-serif text-xl mt-3">Documentación Inicial</h4>
-                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Proforma, Certificado Fitosanitario, Certificado de Origen ICO y Declaración DUA.</p>
-                    </div>
-                </div>
-
-                <!-- Fase 2 con Imagen -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-800 reveal group" style="transition-delay: 0.2s">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1494412574643-ff11b0a5c1c3?auto=format&fit=crop&w=800&q=80" alt="Barco de Carga" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-coffeeCard to-transparent"></div>
-                    </div>
-                    <div class="p-6 relative -mt-10">
-                        <span class="bg-coffeeGold text-coffeeDark text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 02</span>
-                        <h4 class="text-white font-serif text-xl mt-3">Inspección y Carga</h4>
-                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Reserva de contenedor, inspección INSAI, despacho de Guardia Nacional y salida desde La Guaira.</p>
-                    </div>
-                </div>
-
-                <!-- Fase 3 con Imagen -->
-                <div class="bg-coffeeCard rounded-xl overflow-hidden border border-gray-800 reveal group" style="transition-delay: 0.4s">
-                    <div class="h-40 overflow-hidden relative">
-                        <img src="https://images.unsplash.com/photo-1526304640581-d334cdbbf45e?auto=format&fit=crop&w=800&q=80" alt="Reunión de Negocios" class="w-full h-full object-cover opacity-60 group-hover:opacity-80 transition-opacity duration-500">
-                        <div class="absolute inset-0 bg-gradient-to-t from-coffeeCard to-transparent"></div>
-                    </div>
-                    <div class="p-6 relative -mt-10">
-                        <span class="bg-coffeeGold text-coffeeDark text-[10px] font-bold px-3 py-1 rounded uppercase tracking-wider">Fase 03</span>
-                        <h4 class="text-white font-serif text-xl mt-3">Cierre Cambiario</h4>
-                        <p class="text-gray-400 text-xs mt-2 leading-relaxed">Declaración BCV, ventana de pago de 180 días y registro de venta de divisas VUCE.</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Transit Times -->
-            <div class="bg-coffeeCard border border-gray-800 rounded-xl overflow-hidden reveal">
-                <div class="relative">
-                    <img src="https://images.unsplash.com/photo-1578575437130-527eed3abbec?auto=format&fit=crop&w=1600&q=80" alt="Mapa Mundial" class="w-full h-64 object-cover opacity-20">
-                    <div class="absolute inset-0 bg-gradient-to-b from-coffeeCard via-transparent to-coffeeCard"></div>
-                    <div class="absolute inset-0 flex flex-col justify-center items-center p-8">
-                        <h3 class="text-xl font-serif text-white mb-8 text-center relative z-10">Tiempos de Tránsito Estimados</h3>
-                        <div class="grid grid-cols-2 md:grid-cols-4 gap-6 text-center relative z-10 w-full max-w-4xl">
-                            <div class="p-4 bg-coffeeDark/80 backdrop-blur-sm rounded-lg border border-gray-700">
-                                <svg class="w-6 h-6 mx-auto text-coffeeGold mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path></svg>
-                                <span class="block text-coffeeGold font-serif text-2xl">8-10</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Días a EE. UU. Este</span>
-                            </div>
-                            <div class="p-4 bg-coffeeDark/80 backdrop-blur-sm rounded-lg border border-gray-700">
-                                <svg class="w-6 h-6 mx-auto text-coffeeGold mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4"></path></svg>
-                                <span class="block text-coffeeGold font-serif text-2xl">12-15</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Días a EE. UU. Oeste</span>
-                            </div>
-                            <div class="p-4 bg-coffeeDark/80 backdrop-blur-sm rounded-lg border border-gray-700">
-                                <svg class="w-6 h-6 mx-auto text-coffeeGold mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3 17h18M5 17l1-9h12l1 9M7 17v2m10-2v2M12 8v4"></path></svg>
-                                <span class="block text-coffeeGold font-serif text-2xl">28-32</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Días a Europa</span>
-                            </div>
-                            <div class="p-4 bg-coffeeDark/80 backdrop-blur-sm rounded-lg border border-gray-700">
-                                <svg class="w-6 h-6 mx-auto text-coffeeGold mb-2" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
-                                <span class="block text-coffeeGold font-serif text-2xl">45+</span>
-                                <span class="text-[10px] text-gray-400 uppercase tracking-wider">Días a Asia</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <!-- =================================================== -->
-    <!-- FOOTER                                              -->
-    <!-- =================================================== -->
-    <footer class="w-full bg-coffeeDark py-12 px-6 border-t border-gray-900">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 mb-8">
-            <div class="md:col-span-2">
-                <div class="flex items-center space-x-3 mb-4">
-                    <div class="flex flex-col justify-center items-center border border-coffeeGold/30 p-1 rounded w-8 h-8">
-                        <svg class="w-5 h-5 text-coffeeGold" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 10c1.5-1.5 4.5-1.5 6 0" />
-                        </svg>
-                    </div>
-                    <div class="text-lg font-serif tracking-widest text-white">BELGIM C.A.</div>
-                </div>
-                <p class="text-xs text-gray-500 leading-relaxed max-w-sm">
-                    Plataforma de exportación agroindustrial. Cumplimiento estricto de la Normativa CVC N° 025/2021.
-                </p>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Navegación</h4>
-                <ul class="space-y-2 text-xs text-gray-500">
-                    <li><a href="#" onclick="switchTab('home')" class="hover:text-coffeeGold transition">Inicio</a></li>
-                    <li><a href="#" onclick="switchTab('about')" class="hover:text-coffeeGold transition">Empresa</a></li>
-                    <li><a href="#" onclick="switchTab('coffee')" class="hover:text-coffeeGold transition">Catálogo</a></li>
-                </ul>
-            </div>
-            <div>
-                <h4 class="text-white font-semibold text-sm mb-4 uppercase tracking-wider">Legal</h4>
-                <ul class="space-y-2 text-xs text-gray-500">
-                    <li><a href="#" class="hover:text-coffeeGold transition">Términos de Uso</a></li>
-                    <li><a href="#" class="hover:text-coffeeGold transition">Política de Privacidad</a></li>
-                </ul>
-            </div>
-        </div>
-        <div class="border-t border-gray-900 pt-8 text-center text-[10px] text-gray-600">
-            © 2026 Belgim C.A. Todos los derechos reservados. Gaceta Oficial de la República Bolivariana de Venezuela.
         </div>
     </footer>
 
-    <!-- LÓGICA JS -->
+    <!-- ========== JAVASCRIPT ========== -->
     <script>
-        // --- Sistema de Pestañas ---
-        function switchTab(tabId) {
-            document.querySelectorAll('.tab-content').forEach(content => {
-                content.classList.remove('active');
+        // --- Slideshow (solo en página de inicio) ---
+        const slides = document.querySelectorAll('#page-inicio .slide');
+        const dots = document.querySelectorAll('#page-inicio .dot');
+        let current = 0;
+        let interval;
+
+        function goTo(index) {
+            slides.forEach((s, i) => {
+                s.classList.toggle('active', i === index);
             });
-            
-            document.querySelectorAll('.tab-btn').forEach(btn => {
-                btn.classList.remove('text-coffeeGold', 'border-b', 'border-coffeeGold');
-                btn.classList.add('text-gray-400');
+            dots.forEach((d, i) => {
+                d.classList.toggle('bg-primary', i === index);
+                d.classList.toggle('bg-white/40', i !== index);
             });
-            
-            const targetContent = document.getElementById('tab-' + tabId);
-            if(targetContent) {
-                targetContent.classList.add('active');
-                targetContent.querySelectorAll('.reveal').forEach(el => {
-                    el.classList.remove('visible');
-                    setTimeout(() => observeElements(), 100);
-                });
-            }
-            
-            const activeBtn = document.querySelector(`[data-tab="${tabId}"]`);
-            if(activeBtn) {
-                activeBtn.classList.remove('text-gray-400');
-                activeBtn.classList.add('text-coffeeGold', 'border-b', 'border-coffeeGold');
-            }
-
-            window.scrollTo({ top: 0, behavior: 'smooth' });
+            current = index;
         }
 
-        // --- Modal Logic ---
-        const modal = document.getElementById('pdfModal');
-        const modalContent = document.getElementById('modalContent');
-        const openBtn = document.getElementById('openModalBtn');
-        const closeBtn = document.getElementById('closeModalBtn');
-        const form = document.getElementById('leadForm');
-
-        function openModal() {
-            modal.classList.remove('hidden');
-            setTimeout(() => {
-                modal.classList.remove('opacity-0');
-                modalContent.classList.remove('scale-95');
-            }, 10);
+        function nextSlide() {
+            goTo((current + 1) % slides.length);
         }
 
-        function closeModal() {
-            modal.classList.add('opacity-0');
-            modalContent.classList.add('scale-95');
-            setTimeout(() => modal.classList.add('hidden'), 500);
+        function startSlideshow() {
+            if (slides.length === 0) return;
+            interval = setInterval(nextSlide, 5000);
         }
 
-        setTimeout(openModal, 5000); // Auto open
-        
-        openBtn.addEventListener('click', openModal);
-        closeBtn.addEventListener('click', closeModal);
-        modal.addEventListener('click', (e) => { if(e.target === modal) closeModal(); });
-        
-        form.addEventListener('submit', (e) => {
-            e.preventDefault();
-            const btn = form.querySelector('button[type="submit"]');
-            btn.innerHTML = 'Enviando...';
-            setTimeout(() => {
-                alert('¡PDF Enviado! Revisa tu correo.');
-                closeModal();
-                form.reset();
-                btn.innerHTML = 'Descargar PDF';
-            }, 1000);
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                clearInterval(interval);
+                goTo(index);
+                startSlideshow();
+            });
         });
 
-        // --- Mobile Menu ---
-        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
-        const mobileMenu = document.getElementById('mobileMenu');
-        const closeMobileMenuBtn = document.getElementById('closeMobileMenu');
+        // --- Navegación entre páginas ---
+        function navigateTo(pageId) {
+            document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+            const target = document.getElementById('page-' + pageId);
+            if (target) target.classList.add('active');
 
-        mobileMenuBtn.addEventListener('click', () => mobileMenu.classList.remove('translate-x-full'));
-        closeMobileMenuBtn.addEventListener('click', () => mobileMenu.classList.add('translate-x-full'));
-        
-        function closeMobileMenu() {
-            mobileMenu.classList.add('translate-x-full');
+            document.querySelectorAll('nav a[data-page]').forEach(link => {
+                link.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                link.classList.add('text-gray-300');
+                if (link.dataset.page === pageId) {
+                    link.classList.add('text-primary', 'border-b-2', 'border-primary');
+                    link.classList.remove('text-gray-300');
+                }
+            });
+
+            document.getElementById('mobileMenu').classList.add('hidden');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+
+            if (pageId === 'inicio') {
+                clearInterval(interval);
+                goTo(0);
+                startSlideshow();
+            } else {
+                clearInterval(interval);
+            }
         }
 
-        // --- Intersection Observer for Animations ---
-        const observeElements = () => {
-            const observer = new IntersectionObserver((entries) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        entry.target.classList.add('visible');
-                    }
-                });
-            }, { threshold: 0.1 });
+        // --- Mostrar producto dentro de la página Roasted ---
+        function showProduct(productId) {
+            document.querySelectorAll('.product-detail').forEach(el => el.classList.add('hidden'));
+            const target = document.getElementById('product-' + productId);
+            if (target) target.classList.remove('hidden');
 
-            document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
-        };
+            document.querySelectorAll('.product-submenu a').forEach(link => {
+                link.classList.remove('text-primary', 'border-b-2', 'border-primary');
+                link.classList.add('text-gray-300');
+                if (link.dataset.product === productId) {
+                    link.classList.add('text-primary', 'border-b-2', 'border-primary');
+                    link.classList.remove('text-gray-300');
+                }
+            });
+        }
 
-        document.addEventListener('DOMContentLoaded', observeElements);
+        // --- Mobile menu ---
+        const toggle = document.getElementById('menuToggle');
+        const menu = document.getElementById('mobileMenu');
+
+        toggle.addEventListener('click', () => {
+            menu.classList.toggle('hidden');
+        });
+
+        function closeMobile() {
+            menu.classList.add('hidden');
+        }
+
+        // --- Scroll reveal ---
+        const revealElements = document.querySelectorAll('.reveal');
+        const revealObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+        revealElements.forEach(el => revealObserver.observe(el));
+
+        // --- Inicializar ---
+        document.addEventListener('DOMContentLoaded', function() {
+            showProduct('cafe-grano-a-grano');
+            if (document.getElementById('page-inicio').classList.contains('active')) {
+                startSlideshow();
+            }
+        });
+
+        window.navigateTo = navigateTo;
+        window.showProduct = showProduct;
+        window.closeMobile = closeMobile;
     </script>
+
 </body>
 </html>
