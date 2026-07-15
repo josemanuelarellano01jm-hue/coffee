@@ -120,16 +120,9 @@
     <!-- ========== HEADER FIJO ========== -->
     <header class="fixed top-0 left-0 w-full z-50 nav-bg border-b border-white/10">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2 md:py-3 flex items-center justify-between">
-            <!-- Logo -->
-            <a href="#" onclick="navigateTo('inicio')" class="flex items-center gap-2 cursor-pointer">
-                <div class="h-11 md:h-12 w-auto overflow-visible flex items-center justify-center">
-                    <svg class="h-8 md:h-10 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
-                        <path stroke-linecap="round" stroke-linejoin="round" d="M9 10c1.5-1.5 4.5-1.5 6 0" />
-                    </svg>
-                </div>
-                <span class="text-base md:text-lg font-serif tracking-widest text-white hidden sm:block">Belgim Café</span>
+            <!-- Logo: solo texto, sin ícono -->
+            <a href="#" onclick="navigateTo('inicio')" class="flex items-center cursor-pointer">
+                <span class="text-base md:text-lg font-serif tracking-widest text-white">Belgim Café</span>
             </a>
 
             <!-- Desktop Nav -->
@@ -165,23 +158,19 @@
 
     <div class="pt-16">
         <!-- ========================================================== -->
-        <!-- PÁGINA: INICIO (con toda la información ampliada)           -->
+        <!-- PÁGINA: INICIO (sin la sección Contexto del Mercado Global) -->
         <!-- ========================================================== -->
         <div id="page-inicio" class="page active">
-            <!-- Slideshow -->
+            <!-- Slideshow con imágenes de granos de café -->
             <section class="slideshow-container">
-                <div class="slide active" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg');"></div>
-                <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3076.jpg');"></div>
-                <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_2773-1.jpg');"></div>
+                <div class="slide active" style="background-image: url('https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=1920&q=80');"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=1920&q=80');"></div>
+                <div class="slide" style="background-image: url('https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=1920&q=80');"></div>
 
                 <div class="absolute inset-0 bg-black/50 z-10"></div>
                 <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-6">
                     <div class="max-w-4xl">
-                        <svg class="h-20 md:h-24 mx-auto mb-6 text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
-                            <path stroke-linecap="round" stroke-linejoin="round" d="M9 10c1.5-1.5 4.5-1.5 6 0" />
-                        </svg>
+                        <!-- Sin ícono SVG, solo texto -->
                         <h1 class="text-5xl md:text-7xl font-serif text-white leading-[1.1] md:leading-[1.15] tracking-wide">
                             Belgim Café<br />
                             <span class="text-primary italic">Excelencia Venezolana</span>
@@ -259,60 +248,9 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 2: POSICIONAMIENTO GLOBAL -->
-            <section class="bg-card py-20 px-6 border-y border-gray-800">
-                <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-                    <div class="lg:col-span-5 space-y-4 reveal">
-                        <span class="text-xs font-semibold tracking-widest text-primary uppercase">Contexto del Mercado Global</span>
-                        <h2 class="text-3xl font-serif text-white">Estadísticas de Exportadores Líderes</h2>
-                        <p class="text-xs text-gray-400 leading-relaxed font-light">
-                            Venezuela cuenta con un potencial latente de exportación masivo. <b class="text-white">Belgim Café</b> se sitúa a la vanguardia para recuperar el rol histórico del café de origen venezolano.
-                        </p>
-                        <div class="p-4 bg-dark/60 border border-gray-800 rounded-lg">
-                            <div class="flex justify-between items-center text-xs">
-                                <span class="text-white font-medium">Capacidad de Exportación Belgim Café:</span>
-                                <span class="text-primary font-bold font-serif">900,000 QQ</span>
-                            </div>
-                            <div class="w-full bg-gray-800 h-1.5 rounded-full mt-2 overflow-hidden">
-                                <div class="bg-primary h-full rounded-full" style="width: 75%"></div>
-                            </div>
-                            <span class="text-[10px] text-gray-500 block mt-1 font-light text-right">Equivalente a 41,400,000 Kg de capacidad instalada.</span>
-                        </div>
-                    </div>
+            <!-- SECCIÓN ELIMINADA: Contexto del Mercado Global (ya no está) -->
 
-                    <div class="lg:col-span-7 reveal">
-                        <div class="bg-dark border border-gray-800 rounded-xl p-6 relative overflow-hidden">
-                            <img src="https://images.unsplash.com/photo-1523712995608-8d8a62ebd950?auto=format&fit=crop&w=1000&q=80" class="absolute inset-0 w-full h-full object-cover opacity-10" alt="Mapa Mundial">
-                            <div class="relative z-10">
-                                <span class="text-[10px] uppercase tracking-widest text-gray-500 block mb-4 font-semibold">Ranking de Principales Exportadores</span>
-                                <div class="space-y-3 font-sans text-xs">
-                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
-                                        <span class="text-gray-400"><b class="text-white mr-2">01</b> Brasil</span>
-                                        <span class="text-gray-500 font-serif text-xs">Líder Global</span>
-                                    </div>
-                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
-                                        <span class="text-gray-400"><b class="text-white mr-2">02</b> Vietnam</span>
-                                        <span class="text-gray-500">Líder de Mercado N.º 2</span>
-                                    </div>
-                                    <div class="flex justify-between items-center pb-2 border-b border-gray-800">
-                                        <span class="text-gray-400"><b class="text-white mr-2">03</b> Colombia</span>
-                                        <span class="text-gray-500">Competidor Andino</span>
-                                    </div>
-                                    <div class="flex justify-between items-center pt-2 text-primary font-medium">
-                                        <span class="flex items-center gap-2">
-                                            <svg class="w-4 h-4 text-primary" fill="currentColor" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path></svg>
-                                            Destacado: <b class="text-white ml-1">Venezuela (Origen Belgim)</b>
-                                        </span>
-                                        <span class="bg-primary/10 px-2 py-0.5 rounded text-[10px] uppercase font-bold">Potencial Sin Tocar</span>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </section>
-
-            <!-- SECCIÓN 3: INFOGRAFÍA 12 PASOS -->
+            <!-- SECCIÓN 2: INFOGRAFÍA 12 PASOS -->
             <section class="max-w-7xl mx-auto px-6 py-20">
                 <div class="text-center mb-16 reveal">
                     <span class="text-xs font-semibold tracking-widest text-primary uppercase">De la Cosecha al Almacén</span>
@@ -383,7 +321,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 4: REQUERIMIENTOS DE EXPORTACIÓN -->
+            <!-- SECCIÓN 3: REQUERIMIENTOS DE EXPORTACIÓN -->
             <section class="bg-card py-20 px-6 border-t border-gray-800">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-16 reveal">
@@ -394,7 +332,7 @@
                     <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 items-stretch">
                         <div class="bg-dark border border-gray-800 rounded-xl overflow-hidden reveal">
                             <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Contenedores de Envío" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                                <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Granos de café" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
                                 <div class="absolute top-4 left-4 bg-orange-950/80 text-orange-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-orange-900/30">
                                     Grandes Volúmenes · Embarques en Contenedor
                                 </div>
@@ -419,7 +357,7 @@
 
                         <div class="bg-dark border border-gray-800 rounded-xl overflow-hidden reveal" style="transition-delay: 0.2s">
                             <div class="h-48 overflow-hidden relative">
-                                <img src="https://images.unsplash.com/photo-1559526324-593bc073d938?auto=format&fit=crop&w=800&q=80" alt="Sacos de Café" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
+                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Granos de café" class="w-full h-full object-cover opacity-40 hover:opacity-60 transition-opacity duration-500">
                                 <div class="absolute top-4 left-4 bg-emerald-900/80 text-emerald-400 text-[10px] uppercase tracking-widest font-bold px-3 py-1 rounded border border-emerald-900/30">
                                     Pequeños Volúmenes · Hasta 60 Kg Netos
                                 </div>
@@ -486,7 +424,7 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- PÁGINA: HISTORIA -->
+        <!-- PÁGINA: HISTORIA (imagen de granos de café) -->
         <!-- ========================================================== -->
         <div id="page-historia" class="page">
             <section class="py-20 px-6 bg-card/30 min-h-screen">
@@ -512,14 +450,14 @@
                         </div>
                     </div>
                     <div class="reveal">
-                        <img src="https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg" alt="Café" class="rounded-xl shadow-2xl w-full object-cover max-h-96" />
+                        <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Granos de café" class="rounded-xl shadow-2xl w-full object-cover max-h-96" />
                     </div>
                 </div>
             </section>
         </div>
 
         <!-- ========================================================== -->
-        <!-- PÁGINA: CAFÉ TOSTADO (con submenú de productos) -->
+        <!-- PÁGINA: CAFÉ TOSTADO (con submenú de productos, imágenes de granos) -->
         <!-- ========================================================== -->
         <div id="page-tostado" class="page">
             <section class="py-16 px-6 bg-dark min-h-screen">
@@ -575,7 +513,7 @@
                                     </ul>
                                     <p class="text-xs text-gray-400 mt-4">Ediciones limitadas con empaque numerado.</p>
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Edición Gourmet" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Edición Gourmet" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
                             </div>
                         </div>
 
@@ -594,7 +532,7 @@
                                     </ul>
                                     <p class="text-xs text-gray-400 mt-4">Disponible en sacos de 1 kg para profesionales.</p>
                                 </div>
-                                <img src="https://images.unsplash.com/photo-1497935586351-b67a49e012bf?auto=format&fit=crop&w=800&q=80" alt="Edición de Especialidad" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
+                                <img src="https://images.unsplash.com/photo-1514432324607-a09d9b4aefdd?auto=format&fit=crop&w=800&q=80" alt="Edición de Especialidad" class="rounded-xl shadow-2xl w-full object-cover max-h-72" />
                             </div>
                         </div>
 
@@ -641,7 +579,7 @@
         </div>
 
         <!-- ========================================================== -->
-        <!-- PÁGINA: COMERCIO DE CAFÉ VERDE -->
+        <!-- PÁGINA: COMERCIO DE CAFÉ VERDE (imagen de granos) -->
         <!-- ========================================================== -->
         <div id="page-verde" class="page">
             <section class="py-20 px-6 bg-card/30 min-h-screen">
@@ -655,7 +593,7 @@
                     </div>
                     <div class="grid md:grid-cols-2 gap-10 items-center">
                         <div>
-                            <img src="https://images.unsplash.com/photo-1586528116311-ad8dd3c8310d?auto=format&fit=crop&w=800&q=80" alt="Café Verde" class="rounded-xl shadow-2xl w-full object-cover max-h-80" />
+                            <img src="https://images.unsplash.com/photo-1559056199-641a0ac8b55e?auto=format&fit=crop&w=800&q=80" alt="Granos de café verde" class="rounded-xl shadow-2xl w-full object-cover max-h-80" />
                         </div>
                         <div>
                             <h3 class="text-2xl font-serif text-white">Café de origen controlado</h3>
@@ -720,11 +658,6 @@
     <footer class="border-t border-white/5 py-8 px-6 bg-dark/80">
         <div class="max-w-6xl mx-auto flex flex-col md:flex-row justify-between items-center gap-4 text-xs text-gray-500">
             <div class="flex items-center gap-3">
-                <svg class="h-6 w-auto text-primary" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 21c-4-4-8-7.5-8-12a8 8 0 0 1 16 0c0 4.5-4 8-8 12z" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M12 13V7" />
-                    <path stroke-linecap="round" stroke-linejoin="round" d="M9 10c1.5-1.5 4.5-1.5 6 0" />
-                </svg>
                 <span>© 2026 Belgim Café</span>
             </div>
             <div class="flex gap-6">
