@@ -125,17 +125,16 @@
         ::-webkit-scrollbar-track { background: #1a1a1a; }
         ::-webkit-scrollbar-thumb { background: #c49a6c; border-radius: 3px; }
 
-        /* Slideshow mejorado */
+        /* --- SLIDESHOW CORREGIDO --- */
         .slideshow-container {
             position: relative;
             width: 100%;
             height: 100vh;                /* Altura total de la pantalla */
             height: 100dvh;               /* Para navegadores modernos */
-            min-height: -webkit-fill-available; /* Fallback para Safari */
+            min-height: -webkit-fill-available; /* Fallback Safari */
             overflow: hidden;
             background-color: #1a1a1a;
-            padding-top: 64px;            /* Compensa el header fijo (4rem) */
-            box-sizing: border-box;
+            /* El padding-top se aplica al contenedor interno, no aquí */
         }
         .slide {
             position: absolute;
@@ -146,6 +145,41 @@
             transition: opacity 0.8s ease-in-out;
         }
         .slide.active { opacity: 1; }
+
+        /* Contenedor interno que compensa el header */
+        .slideshow-inner {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 0 1rem;
+            padding-top: 64px; /* Altura del header en desktop */
+            box-sizing: border-box;
+            z-index: 20;
+        }
+        @media (max-width: 640px) {
+            .slideshow-inner {
+                padding-top: 56px; /* Header más pequeño en móvil */
+            }
+        }
+
+        /* Para pantallas muy pequeñas, reducir tamaño de fuente */
+        @media (max-width: 480px) {
+            .slideshow-inner h1 {
+                font-size: 2.2rem !important;
+                line-height: 1.2 !important;
+            }
+            .slideshow-inner p {
+                font-size: 0.75rem !important;
+            }
+            .slideshow-inner .boton {
+                font-size: 0.6rem !important;
+                padding: 0.6rem 1rem !important;
+            }
+        }
 
         .reveal {
             opacity: 0;
@@ -226,25 +260,9 @@
         }
         .modal-close:hover { color: #c49a6c; }
 
-        /* Ajustes extra para móviles muy pequeños */
-        @media (max-width: 480px) {
-            .slideshow-container h1 {
-                font-size: 2.2rem !important;
-                line-height: 1.2 !important;
-            }
-            .slideshow-container p {
-                font-size: 0.75rem !important;
-            }
-            .slideshow-container .boton {
-                font-size: 0.6rem !important;
-                padding: 0.6rem 1rem !important;
-            }
-            .slideshow-container {
-                padding-top: 56px; /* header más pequeño en móvil */
-            }
-            .modal-box {
-                padding: 1rem 1rem 1.5rem;
-            }
+        /* Ajuste para el padding de las otras páginas (ya se veían bien) */
+        .page-section {
+            padding-top: 80px; /* espacio para el header */
         }
     </style>
 </head>
@@ -292,22 +310,23 @@
     <!-- ============================================================ -->
     <!-- ==================== CONTENEDOR DE PÁGINAS =================== -->
     <!-- ============================================================ -->
-    <!-- Eliminado el pt-16 global para que el slideshow ocupe toda la pantalla -->
     <div>
 
         <!-- ========================================================== -->
-        <!-- PÁGINA: INICIO                                               -->
+        <!-- PÁGINA: INICIO (SLIDESHOW CORREGIDO)                        -->
         <!-- ========================================================== -->
         <div id="page-inicio" class="page active">
-            <!-- Slideshow -->
             <section class="slideshow-container">
-                <!-- Imágenes de fondo (reemplaza por las tuyas) -->
+                <!-- Imágenes de fondo -->
                 <div class="slide active" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg');"></div>
                 <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3076.jpg');"></div>
                 <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_2773-1.jpg');"></div>
 
+                <!-- Capa oscura -->
                 <div class="absolute inset-0 bg-black/50 z-10"></div>
-                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6" style="padding-top: 0;">
+
+                <!-- Contenido interno con padding-top para header -->
+                <div class="slideshow-inner">
                     <div class="max-w-4xl w-full">
                         <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif text-white leading-[1.1] md:leading-[1.15] tracking-wide">
                             Belgim Café<br />
@@ -323,6 +342,7 @@
                     </div>
                 </div>
 
+                <!-- Puntos de navegación -->
                 <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-30 flex gap-3">
                     <span class="dot w-3 h-3 rounded-full bg-primary cursor-pointer" data-index="0"></span>
                     <span class="dot w-3 h-3 rounded-full bg-white/40 cursor-pointer" data-index="1"></span>
@@ -330,7 +350,8 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN 1: DASHBOARD DE PRODUCCIÓN -->
+            <!-- El resto de la página de inicio (estadísticas, quiénes somos, etc.) -->
+            <!-- SECCIÓN: DASHBOARD -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
                 <div class="text-center mb-12 md:mb-16 reveal">
                     <span class="text-xs font-semibold tracking-widest text-primary uppercase">Panel de Producción</span>
@@ -386,7 +407,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN: QUIÉNES SOMOS / NUESTRA DIFERENCIA -->
+            <!-- QUIÉNES SOMOS / NUESTRA DIFERENCIA -->
             <section class="py-16 md:py-20 px-4 sm:px-6 bg-dark border-y border-white/5">
                 <div class="max-w-7xl mx-auto">
                     <div class="grid md:grid-cols-2 gap-8 md:gap-12 items-center mb-16 md:mb-20 reveal">
@@ -454,7 +475,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN: INFOGRAFÍA 12 PASOS -->
+            <!-- INFOGRAFÍA 12 PASOS -->
             <section class="max-w-7xl mx-auto px-4 sm:px-6 py-16 md:py-20">
                 <div class="text-center mb-12 md:mb-16 reveal">
                     <span class="text-xs font-semibold tracking-widest text-primary uppercase">De la Cosecha al Almacén</span>
@@ -530,7 +551,7 @@
                 </div>
             </section>
 
-            <!-- SECCIÓN: REQUERIMIENTOS DE EXPORTACIÓN -->
+            <!-- REQUERIMIENTOS DE EXPORTACIÓN -->
             <section class="bg-card py-16 md:py-20 px-4 sm:px-6 border-t border-gray-800">
                 <div class="max-w-7xl mx-auto">
                     <div class="text-center mb-12 md:mb-16 reveal">
@@ -636,7 +657,7 @@
         <!-- PÁGINA: HISTORIA                                            -->
         <!-- ========================================================== -->
         <div id="page-historia" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen" style="padding-top: 80px;">
+            <section class="page-section py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen">
                 <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="reveal">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Nuestra Historia</span>
@@ -667,10 +688,10 @@
         <!-- FIN PÁGINA HISTORIA -->
 
         <!-- ========================================================== -->
-        <!-- PÁGINA: NUESTRO CAFÉ (variedades)                           -->
+        <!-- PÁGINA: NUESTRO CAFÉ                                        -->
         <!-- ========================================================== -->
         <div id="page-tostado" class="page">
-            <section class="py-16 px-4 sm:px-6 bg-dark min-h-screen" style="padding-top: 80px;">
+            <section class="page-section py-16 px-4 sm:px-6 bg-dark min-h-screen">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-10 md:mb-12">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Nuestras Variedades</span>
@@ -807,7 +828,7 @@
         <!-- PÁGINA: COMERCIO DE CAFÉ VERDE                              -->
         <!-- ========================================================== -->
         <div id="page-verde" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen" style="padding-top: 80px;">
+            <section class="page-section py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-12 md:mb-16 reveal">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Comercio de Café Verde</span>
@@ -843,7 +864,7 @@
         <!-- PÁGINA: CONTACTO                                            -->
         <!-- ========================================================== -->
         <div id="page-contacto" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-dark min-h-screen" style="padding-top: 80px;">
+            <section class="page-section py-16 md:py-20 px-4 sm:px-6 bg-dark min-h-screen">
                 <div class="max-w-4xl mx-auto text-center reveal">
                     <span class="text-xs uppercase tracking-widest text-primary font-semibold">Contacto</span>
                     <h2 class="text-2xl md:text-4xl font-serif text-white mt-2">Hablemos de café</h2>
