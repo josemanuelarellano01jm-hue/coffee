@@ -33,7 +33,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap" rel="stylesheet" />
 
     <style>
-        /* Botón flotante de WhatsApp */
+        /* Botón flotante WhatsApp */
         .whatsapp-float {
             position: fixed;
             bottom: 20px;
@@ -125,14 +125,17 @@
         ::-webkit-scrollbar-track { background: #1a1a1a; }
         ::-webkit-scrollbar-thumb { background: #c49a6c; border-radius: 3px; }
 
-        /* Slideshow mejorado para móviles */
+        /* Slideshow mejorado */
         .slideshow-container {
             position: relative;
             width: 100%;
-            height: 100dvh;
-            min-height: 100dvh;
+            height: 100vh;                /* Altura total de la pantalla */
+            height: 100dvh;               /* Para navegadores modernos */
+            min-height: -webkit-fill-available; /* Fallback para Safari */
             overflow: hidden;
             background-color: #1a1a1a;
+            padding-top: 64px;            /* Compensa el header fijo (4rem) */
+            box-sizing: border-box;
         }
         .slide {
             position: absolute;
@@ -223,6 +226,7 @@
         }
         .modal-close:hover { color: #c49a6c; }
 
+        /* Ajustes extra para móviles muy pequeños */
         @media (max-width: 480px) {
             .slideshow-container h1 {
                 font-size: 2.2rem !important;
@@ -234,6 +238,9 @@
             .slideshow-container .boton {
                 font-size: 0.6rem !important;
                 padding: 0.6rem 1rem !important;
+            }
+            .slideshow-container {
+                padding-top: 56px; /* header más pequeño en móvil */
             }
             .modal-box {
                 padding: 1rem 1rem 1.5rem;
@@ -285,7 +292,8 @@
     <!-- ============================================================ -->
     <!-- ==================== CONTENEDOR DE PÁGINAS =================== -->
     <!-- ============================================================ -->
-    <div class="pt-16">
+    <!-- Eliminado el pt-16 global para que el slideshow ocupe toda la pantalla -->
+    <div>
 
         <!-- ========================================================== -->
         <!-- PÁGINA: INICIO                                               -->
@@ -293,12 +301,13 @@
         <div id="page-inicio" class="page active">
             <!-- Slideshow -->
             <section class="slideshow-container">
+                <!-- Imágenes de fondo (reemplaza por las tuyas) -->
                 <div class="slide active" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3180.jpg');"></div>
                 <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_3076.jpg');"></div>
                 <div class="slide" style="background-image: url('https://cafegranoagrano.com/wp-content/uploads/2026/02/DSC_2773-1.jpg');"></div>
 
                 <div class="absolute inset-0 bg-black/50 z-10"></div>
-                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6">
+                <div class="absolute inset-0 z-20 flex flex-col items-center justify-center text-center px-4 sm:px-6" style="padding-top: 0;">
                     <div class="max-w-4xl w-full">
                         <h1 class="text-4xl sm:text-5xl md:text-7xl font-serif text-white leading-[1.1] md:leading-[1.15] tracking-wide">
                             Belgim Café<br />
@@ -627,7 +636,7 @@
         <!-- PÁGINA: HISTORIA                                            -->
         <!-- ========================================================== -->
         <div id="page-historia" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen">
+            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen" style="padding-top: 80px;">
                 <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <div class="reveal">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Nuestra Historia</span>
@@ -661,7 +670,7 @@
         <!-- PÁGINA: NUESTRO CAFÉ (variedades)                           -->
         <!-- ========================================================== -->
         <div id="page-tostado" class="page">
-            <section class="py-16 px-4 sm:px-6 bg-dark min-h-screen">
+            <section class="py-16 px-4 sm:px-6 bg-dark min-h-screen" style="padding-top: 80px;">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-10 md:mb-12">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Nuestras Variedades</span>
@@ -798,7 +807,7 @@
         <!-- PÁGINA: COMERCIO DE CAFÉ VERDE                              -->
         <!-- ========================================================== -->
         <div id="page-verde" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen">
+            <section class="py-16 md:py-20 px-4 sm:px-6 bg-card/30 min-h-screen" style="padding-top: 80px;">
                 <div class="max-w-6xl mx-auto">
                     <div class="text-center mb-12 md:mb-16 reveal">
                         <span class="text-xs uppercase tracking-widest text-primary font-semibold">Comercio de Café Verde</span>
@@ -834,7 +843,7 @@
         <!-- PÁGINA: CONTACTO                                            -->
         <!-- ========================================================== -->
         <div id="page-contacto" class="page">
-            <section class="py-16 md:py-20 px-4 sm:px-6 bg-dark min-h-screen">
+            <section class="py-16 md:py-20 px-4 sm:px-6 bg-dark min-h-screen" style="padding-top: 80px;">
                 <div class="max-w-4xl mx-auto text-center reveal">
                     <span class="text-xs uppercase tracking-widest text-primary font-semibold">Contacto</span>
                     <h2 class="text-2xl md:text-4xl font-serif text-white mt-2">Hablemos de café</h2>
